@@ -2,6 +2,7 @@
 
 A simple web app which will give a random prompt of words and grammar points , so one can (hopefully) stop procrastinating and start using them.
 
+Site available at [https://yjdoc2.github.io/jpn-prompt-generator/](https://yjdoc2.github.io/jpn-prompt-generator/)
 ---
 
 # What is this
