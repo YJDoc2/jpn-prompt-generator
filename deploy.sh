@@ -7,6 +7,8 @@ genkiGrammer
 root=$(git rev-parse --show-toplevel)
 cd root
 
-git clone github
+rm -rf /tmp/gh-pages
 
-cp -Lfr ./web /tmp/
+git clone git@github.com:YJDoc2/jpn-prompt-generator.git --branch gh-pages /tmp/gh-pages 
+
+cp -Lfr ./web //tmp/gh-pages
