@@ -33,6 +33,7 @@ This is by no means perfect, so contributions are much welcome. Please check [co
 I wouldn't mind adding these if enough people want them.
 - More vocab decks : Currently this only has N5 and N4, because I'm at lower N5-ish level. If people on higher levels are using this, and want N3/2/1 decks, I wouldn't mind adding them. This will take changes only from my side.
 - Grammar points from other books : I have added Genki 1 , as that's what I'm currently using, but if enough people want some other book's points, I wouldn't mind adding that. For this There will be some changes needed in code as well as I will need help in getting similar JSON about the grammar points in that book from the requestors.
+- Improving the Grammar points : Currently the grammar points are cut-short, I'd like them to be a bit better worded, and maybe linked to some reference articles, similar to the way words are linked to their Jisho pages.
 - Support for custom Vocab lists to sample from : I wouldn't mind adding support for importing and storing custom vocab list JSON from local-storage ( so it will be device specific), so one can get words from their chosen set. This will need some code contributions.
 
 ## Most likely won't fix

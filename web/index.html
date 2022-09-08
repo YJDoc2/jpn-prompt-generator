@@ -23,35 +23,49 @@
     <br />
     <div class="container">
 
-        <div class="row">
-            <label class="form-lable" for="vocabSelect">Select from which vocab list to get words</label>
-            <div class="col">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="n5" value="N5">
-                    <label class="form-lable" for="n5Checkbox">N5 Vocab</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="n4" value="N4">
-                    <label class="form-lable" for="n4Checkbox">N4 Vocab</label>
+        <!-- Main row for the value input-->
+        <div class="row mb-3">
+            <!-- col for vocab-->
+            <div class="col col-sm-12 col-md-4 mb-sm-3">
+                <label class="form-lable" for="vocabSelect">Select from which vocab list to get words</label>
+                <div class="row">
+                    <div class="col col-sm-6 col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="n5" value="N5">
+                            <label class="form-lable" for="n5Checkbox">N5 Vocab</label>
+                        </div>
+                    </div>
+                    <div class="col col-sm-6 col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="n4" value="N4">
+                            <label class="form-lable" for="n4Checkbox">N4 Vocab</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="form-check form-check-inline">
-                    <label class="form-lable" for="vocabCount">Number of vocab to select (1-10) </label>
-                    <input class="form-input" type="number" min="1" max="10" id="vocabCount" value=5 />
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-check form-check-inline">
-                    <label class="form-lable" for="grammarCount">Number of grammar points to select (1-10) </label>
-                    <input class="form-input" type="number" min="1" max="10" id="grammarCount"  value=3 />
+            <!-- Col for number -->
+            <div class="col col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col col-md-6">
+                        <div class="form-input">
+                            <label class="form-lable" for="vocabCount">Words (1-10) &nbsp;</label>
+                            <input class="form-input" type="number" min="1" max="10" id="vocabCount" value=5 />
+                        </div>
+                    </div>
+                    <div class="col col-md-6">
+                        <div class="form-input">
+                            <label class="form-lable" for="grammarCount">Grammar points (1-10)</label>
+                            <input class="form-input" type="number" min="1" max="10" id="grammarCount"  value=3 />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <br />
-        <div class="row">
-            <div class="col">
+        
+        
+        <!-- Buttons -->
+        <div class="row mb-3">
+            <div class="col col-md-12">
                 <label class="form-lable" for="lessonSelect">Genki Lesson Grammar</label>
                 <select class="form-select" aria-label="Genki Lesson Select" id="lessonSelect">
                     <option value=0>Placeholder</option>
@@ -63,8 +77,10 @@
         <div id="errorPlaceholder"></div>
         
         <div class="row">
-            <div class="col">
+            <div class="col col-md-6">
                 <button type="button" class="btn btn-outline-primary" onclick="daily()">Get Daily Selection</button>
+            </div>
+            <div class="col col-md-6">
                 <button type="button" class="btn btn-outline-primary" onclick="random()">Get Random Selection</button>
             </div>
         </div>
@@ -74,11 +90,11 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col col-12 col-sm-6 mb-3">
                 <ul class="list-group" id="vocabList">
                 </ul>
             </div>
-            <div class="col">
+            <div class="col col-12 col-sm-6">
                 <ul class="list-group" id="grammarList">
                 </ul>
             </div>
