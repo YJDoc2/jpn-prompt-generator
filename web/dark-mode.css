@@ -2,7 +2,6 @@
 
 /* based on https://unpkg.com/bootstrap-darkmode@0.7.0/dist/darktheme.css */
 
-
 @media(prefers-color-scheme: dark) {
   .dark-mode {
     color: #bebebe;
@@ -246,6 +245,14 @@
     color: #bebebe;
     background-color: #202020;
     border-color: #404040;
+  }
+
+  .dark-mode input[type=number] {
+    background-color: #202020;
+    color: #bebebe;
+    border-width: 0px 0px 1px 0px;
+    appearance: textfield;
+    margin: 0;
   }
 
   .dark-mode .page-item .page-link {
@@ -637,6 +644,14 @@
   color: #bebebe;
   background-color: #202020;
   border-color: #404040;
+}
+
+.dark-mode input[type=number] {
+  background-color: #202020;
+  color: #bebebe;
+  border-width: 0px 0px 1px 0px;
+  appearance: textfield;
+  margin: 0;
 }
 
 .dark-mode .page-item .page-link {
