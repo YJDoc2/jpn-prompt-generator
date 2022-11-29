@@ -22,15 +22,6 @@ window.onload = async ()=>{
     
     }
 
-    let lessonSelect = document.querySelector('#lessonSelect');
-    
-    // remove the placeholder
-    lessonSelect.remove(0);
-    for(let i=1;i<=12;i++){
-        let opt = new Option(`Upto Lesson ${i}`,i);
-        lessonSelect.append(opt);
-    }
-
     document.querySelector('#dark-mode-toggle').onchange = (e)=>{
         if(e.target.checked){
             localStorage.setItem('darkMode',true);
@@ -64,10 +55,12 @@ function getSelectionWordList(){
 
 function getSelectionGrammarList(){
 
-    let lessonSelect = document.querySelector('#lessonSelect');
-    let upto = lessonSelect.value;
+    let lessonStart = document.querySelector('#lessonStart');
+    let lessonEnd = document.querySelector('#lessonEnd');
+    let from = parseInt(lessonStart.value);
+    let upto = parseInt(lessonEnd.value);
     let selected = genkiPoints.filter((p)=>{
-        return p.lesson <= upto;
+        return from <= p.lesson && p.lesson <= upto
     });
     
     return selected;
@@ -91,6 +84,18 @@ function validate(){
 
     if(1>gcount || gcount>10){
         throw 'Please enter value between 1 - 10 for grammar count';
+    }
+
+    let lessonStart = document.querySelector('#lessonStart');
+    let lessonEnd = document.querySelector('#lessonEnd');
+    let from = parseInt(lessonStart.value);
+    let upto = parseInt(lessonEnd.value);
+
+    if(isNaN(from) || isNaN(upto)){
+        throw 'Set valid value for from and to lesson';
+    }
+    if( from > upto ){
+        throw 'from lesson should be less than or equal to upto lesson';
     }
 
     return;
