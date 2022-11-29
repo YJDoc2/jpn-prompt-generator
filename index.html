@@ -63,19 +63,23 @@
         </div>
         
         
-        <!-- Buttons -->
+        <!-- lesson range -->
         <div class="row mb-3">
-            <div class="col col-md-12">
-                <label class="form-lable" for="lessonSelect">Genki Lesson Grammar</label>
-                <select class="form-select" aria-label="Genki Lesson Select" id="lessonSelect">
-                    <option value=0>Placeholder</option>
-                    <!-- Actual values will be filled using JS -->
-                </select>
+            <div class="col col-md-6">
+                <label for="lessonStart">From Genki Lesson </label>
+                <br />
+                <input class="form-input" aria-placeholder="From Genki lesson" placeholder="From Genki lesson" type="number" min="1" max="12" id="lessonStart"/>
+            </div>
+            <div class="col col-md-6">
+                <label for="lessonEnd">Upto Genki Lesson </label>
+                <br />
+                <input class="form-input" aria-placeholder="Upto Genki lesson" placeholder="Upto Genki lesson" type="number" min="1" max="12" id="lessonEnd"/>
             </div>
         </div>
         <br />
         <div id="errorPlaceholder"></div>
         
+        <!-- Buttons -->
         <div class="row">
             <div class="col col-md-6">
                 <button type="button" class="btn btn-outline-primary" onclick="daily()">Get Daily Selection</button>
