@@ -2,11 +2,6 @@
 import * as utils from './utils.mjs'
 import { getSelectionGrammarList, getSelectionWordList } from './dataHandler.mjs'
 
-let n5Words = [];
-let n4Words = [];
-
-let genkiPoints = [];
-
 let date = new Date();
 // seed to use in rng for the daily prompt
 let dailySeed = new Date(date.getFullYear(), date.getMonth(), date.getDay()).getTime() / 1000;
@@ -103,9 +98,17 @@ function setValues(rand) {
     // we don't need to look out of duplicates. There will be duplicates
     // very rarely. This will need to implement the duplicate check if
     // custom lists are implemented
+    let temp = new Set();
     for (let i = 0; i < vocabCount; i++) {
         let r = Math.floor((rand() * selectionWordList.length));
         let word = selectionWordList[r];
+
+        // this avoids duplicates in case the available point selection is more than required point count
+        if (temp.has(word) && selectionWordList.length > vocabCount) {
+            i--;
+            continue;
+        }
+        temp.add(word);
         let atag = document.createElement('a');
         atag.textContent = word.text;
         atag.href = word.jishoLink;
@@ -115,18 +118,18 @@ function setValues(rand) {
         vocabList.appendChild(atag);
     }
 
-    let set = new Set();
+    temp = new Set();
     for (let i = 0; i < grammarCount; i++) {
         let r = Math.floor((rand() * selectionGrammarList.length));
         let point = selectionGrammarList[r];
 
         // this avoids duplicates in case the available point selection is more than required point count
-        if (set.has(point) && selectionGrammarList.length > grammarCount) {
+        if (temp.has(point) && selectionGrammarList.length > grammarCount) {
             i--;
             continue;
         }
 
-        set.add(point);
+        temp.add(point);
         let li = document.createElement('li');
         li.setAttribute('class', 'list-group-item list');
         li.appendChild(document.createTextNode(`${point.text} : Lesson ${point.lesson}`));
