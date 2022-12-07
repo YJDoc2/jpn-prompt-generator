@@ -13,13 +13,12 @@ const errorPlaceholder = document.getElementById('errorPlaceholder');
 
 
 window.onload = async () => {
-
+    document.querySelector('#dark-mode-toggle').checked = false;
     // set initial mode if set in local storage
-    if (localStorage.getItem('darkMode') === 'true') {
+    if (JSON.parse(localStorage.getItem('darkMode'))) {
         document.body.classList.add("dark-mode");
         document.body.classList.remove("bg-light");
         document.querySelector('#dark-mode-toggle').checked = true;
-
     }
 
     document.querySelector('#dark-mode-toggle').onchange = (e) => {
@@ -200,8 +199,11 @@ async function loadData() {
 
     let updateNeeded = true;
 
+    let WordList = JSON.parse(localStorage.getItem('WordList')) || {};
+    let GrammarList = JSON.parse(localStorage.getItem('GrammarList')) || {};
+
     if (localData) {
-        if (!localStorage.getItem('n5words') || !localStorage.getItem('n4words') || !localStorage.getItem('genkiGrammar')) {
+        if (!WordList?.n5Words || !WordList?.n4Words || !GrammarList.genkiGrammar) {
             // yeah, we need to fetch
         } else if (localData.words === updateData.words && localData.grammar === updateData.grammar) {
             updateNeeded = false;
@@ -214,14 +216,17 @@ async function loadData() {
         n4Words = await (await fetch('./data/n4Filtered.json')).json();
         genkiPoints = await (await fetch('./data/genkiGrammarPoints.json')).json();
 
-        localStorage.setItem('n5words', JSON.stringify(n5Words));
-        localStorage.setItem('n4words', JSON.stringify(n4Words));
-        localStorage.setItem('genkiGrammar', JSON.stringify(genkiPoints));
+        WordList.n5Words = n5Words;
+        WordList.n4Words = n4Words;
+        GrammarList.genkiGrammar = genkiPoints;
+
+        localStorage.setItem('WordList', JSON.stringify(WordList));
+        localStorage.setItem('GrammarList', JSON.stringify(GrammarList));
         localStorage.setItem('updateData', JSON.stringify(updateData));
     } else {
-        n5Words = JSON.parse(localStorage.getItem('n5words'));
-        n4Words = JSON.parse(localStorage.getItem('n4words'));
-        genkiPoints = JSON.parse(localStorage.getItem('genkiGrammar'));
+        n5Words = WordList.n5Words;
+        n4Words = WordList.n4Words;
+        genkiPoints = GrammarList.genkiGrammar;
     }
 
 
