@@ -1,6 +1,7 @@
 "use strict";
 import * as utils from './utils.mjs'
 import { getSelectionGrammarList, getSelectionWordList } from './dataHandler.mjs'
+import { isMouseDown, setMouseDown, setMouseUp } from './stateManager.mjs';
 
 let date = new Date();
 // seed to use in rng for the daily prompt
@@ -29,6 +30,7 @@ window.onload = async () => {
     }
     // fetch the data, now that page has loaded
     await utils.loadData();
+    utils.populateListContents();
 
 };
 
@@ -148,3 +150,12 @@ export function random() {
 
 document.querySelector('#btnDaily').addEventListener('click', daily);
 document.querySelector('#btnRandom').addEventListener('click', random);
+
+
+document.addEventListener('mousedown', () => {
+    setMouseDown();
+});
+
+document.addEventListener('mouseup', () => {
+    setMouseUp();
+});

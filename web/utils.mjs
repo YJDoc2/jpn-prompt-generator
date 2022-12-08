@@ -1,5 +1,6 @@
 "use strict";
 import { setGrammarList, getGrammarList, getWordList, setWordList, setUpdateData, getUpdateData } from "./dataHandler.mjs";
+import { addDragSelectBehavior, selectionEvent } from "./stateManager.mjs";
 
 
 export function showError(message, type) {
@@ -76,4 +77,108 @@ export function clearList(elem) {
     for (let c of t) {
         elem.removeChild(c);
     }
+
+}
+
+
+function getCheckboxUl(parentHeader, list) {
+    let ul = document.createElement('ul');
+    ul.classList = 'list-group';
+    for (let header of Object.keys(list)) {
+        let li = document.createElement('li');
+        li.classList = 'list-group-item';
+        li.style.userSelect = 'none';
+        let div = document.createElement('div')
+        div.classList = 'form-check'
+        let check = document.createElement('input');
+        check.type = 'checkbox';
+        check.classList = 'form-check-input';
+        check.id = `${parentHeader}-${header}-check`.replace(' ', '-');
+        check.addEventListener('change', () => {
+            selectionEvent(check, list[header], `${parentHeader}-${header}`);
+        });
+        li.addEventListener('mousedown', () => {
+            check.checked = !check.checked;
+            selectionEvent(check, list[header], `${parentHeader}-${header}`);
+        })
+        addDragSelectBehavior(check, li, list[header], `${parentHeader}-${header}`);
+        let label = document.createElement('label');
+        label.classList = 'form-check-label';
+        label.setAttribute('for', check.id);
+        label.textContent = header;
+        div.appendChild(check);
+        div.appendChild(label);
+        li.appendChild(div);
+        ul.appendChild(li);
+    }
+    return ul;
+}
+
+function getAccordionItem(header, contents, mainId) {
+    let kbbHeader = header.replace(' ', '-');
+    let itemDiv = document.createElement('div');
+    itemDiv.classList = 'accordion-item';
+    let h2 = document.createElement('h2');
+    h2.classList = 'accordion-header';
+    let btn = document.createElement('button');
+    btn.classList = 'accordion-button collapsed';
+    btn.type = 'button';
+    btn.setAttribute('data-bs-toggle', 'collapse');
+    btn.setAttribute('data-bs-target', `#${kbbHeader}-content`);
+    btn.textContent = kbbHeader;
+    h2.appendChild(btn);
+    itemDiv.appendChild(h2);
+    let dataDiv = document.createElement('div');
+    dataDiv.classList = 'accordion-collapse collapse';
+    dataDiv.setAttribute('data-bs-parent', `#${mainId}`);
+    dataDiv.id = `${kbbHeader}-content`;
+    let contentDiv = document.createElement('div');
+    contentDiv.classList = 'accordion-body';
+    let ul = getCheckboxUl(kbbHeader, contents);
+    contentDiv.appendChild(ul);
+    dataDiv.appendChild(contentDiv)
+    itemDiv.appendChild(dataDiv);
+    return itemDiv;
+
+}
+
+function getChapters(list) {
+    let mapping = {};
+    for (let item of list) {
+        if (!mapping[item.lesson]) {
+            mapping[item.lesson] = [];
+        }
+        mapping[item.lesson].push(item);
+    }
+    return mapping;
+}
+
+export function populateListContents() {
+
+    let words = getWordList();
+    let grammars = getGrammarList();
+
+    let vocabPane = document.querySelector('#vocabPane');
+    let grammarPane = document.querySelector('#grammarPane');
+    vocabPane.innerHTML = '';
+    grammarPane.innerHTML = '';
+
+    let _div = document.createElement('div');
+    _div.classList = 'container mt-2';
+    let ul = getCheckboxUl('vocab', words);
+    _div.appendChild(ul);
+    vocabPane.appendChild(_div);
+
+    _div = document.createElement('div');
+    _div.classList = 'container mt-2';
+    let accordionDiv = document.createElement('div');
+    accordionDiv.classList = 'accordion';
+    accordionDiv.id = 'grammarAccordion';
+    for (let key of Object.keys(grammars)) {
+        let chapters = getChapters(grammars[key]);
+        let item = getAccordionItem(key, chapters, 'grammarAccordion');
+        accordionDiv.appendChild(item);
+    }
+    _div.appendChild(accordionDiv);
+    grammarPane.appendChild(_div);
 }

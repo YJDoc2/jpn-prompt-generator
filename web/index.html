@@ -33,72 +33,43 @@
     <div class="container">
 
         <!-- Main row for the value input-->
-        <div class="row mb-3">
-            <!-- col for vocab-->
-            <div class="col col-sm-12 col-md-4 mb-sm-3">
-                <label class="form-lable" for="vocabSelect">Select from which vocab list to get words</label>
-                <div class="row">
-                    <div class="col col-sm-6 col-md-6">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="n5" value="N5">
-                            <label class="form-lable" for="n5Checkbox">N5 Vocab</label>
-                        </div>
-                    </div>
-                    <div class="col col-sm-6 col-md-6">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="n4" value="N4">
-                            <label class="form-lable" for="n4Checkbox">N4 Vocab</label>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col col-12 col-md-4 mb-1">
+                <button type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal"
+                    data-bs-target="#dataSelectModal">
+                    Select Vocab and Grammar Lists
+                </button>
+            </div>
+            <div class="col col-12 col-md-4 mb-1">
+                <div class="form-floating">
+                    <input class="form-control" type="number" min="1" id="vocabCount" value=5 />
+                    <label class="form-lable" for="vocabCount">Words</label>
                 </div>
             </div>
-            <!-- Col for number -->
-            <div class="col col-sm-12 col-md-6">
-                <div class="row">
-                    <div class="col col-md-6">
-                        <div class="form-input">
-                            <label class="form-lable" for="vocabCount">Words (1-10) </label>
-                            <br />
-                            <input class="form-input" type="number" min="1" max="10" id="vocabCount" value=5 />
-                        </div>
-                    </div>
-                    <div class="col col-md-6">
-                        <div class="form-input">
-                            <label class="form-lable" for="grammarCount">Grammar points (1-10)</label>
-                            <br />
-                            <input class="form-input" type="number" min="1" max="10" id="grammarCount" value=3 />
-                        </div>
-                    </div>
+            <div class="col col-12 col-md-4 mb-1">
+                <div class="form-floating">
+                    <input class="form-control" type="number" min="1" id="grammarCount" value=3 />
+                    <label class="form-lable" for="grammarCount">Grammar points</label>
                 </div>
-            </div>
-        </div>
-
-
-        <!-- lesson range -->
-        <div class="row mb-3">
-            <div class="col col-md-6">
-                <label for="lessonStart">From Genki Lesson </label>
-                <br />
-                <input class="form-input" aria-placeholder="From Genki lesson" placeholder="From Genki lesson"
-                    type="number" min="1" max="12" id="lessonStart" />
-            </div>
-            <div class="col col-md-6">
-                <label for="lessonEnd">Upto Genki Lesson </label>
-                <br />
-                <input class="form-input" aria-placeholder="Upto Genki lesson" placeholder="Upto Genki lesson"
-                    type="number" min="1" max="12" id="lessonEnd" />
             </div>
         </div>
         <br />
+
+
+        <div id="selectedVocab"></div>
+        <div id="selectedGrammar"></div>
+
+        <!-- Error message -->
         <div id="errorPlaceholder"></div>
 
         <!-- Buttons -->
         <div class="row">
             <div class="col col-md-6">
-                <button type="button" class="btn btn-outline-primary" id="btnDaily">Get Daily Selection</button>
+                <button type="button" class="btn btn-outline-primary btn-lg" id="btnDaily">Get Daily Selection</button>
             </div>
             <div class="col col-md-6">
-                <button type="button" class="btn btn-outline-primary" id="btnRandom">Get Random Selection</button>
+                <button type="button" class="btn btn-outline-primary btn-lg" id="btnRandom">Get Random
+                    Selection</button>
             </div>
         </div>
     </div>
@@ -117,6 +88,7 @@
             </div>
         </div>
     </div>
+
     <br />
     <div class="container" id="about">
         <h1>About</h1>
@@ -200,10 +172,43 @@
         <div class="mb-3">copyright 2022 YJDoc2</div>
     </footer>
 
+    <div class="modal fade" id="dataSelectModal" tabindex="-1" aria-labelledby="dataSelectModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="dataSelectModalTitle">Select Vocab and Grammar</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="vocab-tab-head" data-bs-toggle="tab"
+                                data-bs-target="#vocabPane" type="button" role="tab" aria-controls="vocab-tab-pane"
+                                aria-selected="true">Vocab</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="grammar-ba-head" data-bs-toggle="tab"
+                                data-bs-target="#grammarPane" type="button" role="tab" aria-controls="grammar-tab-pane"
+                                aria-selected="false">Grammar</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="taContents">
+                        <div class="tab-pane fade show active" id="vocabPane" role="tabpanel"
+                            aria-labelledby="vocab-tab" tabindex="0"></div>
+                        <div class="tab-pane fade" id="grammarPane" role="tabpanel" aria-labelledby="grammar-tab"
+                            tabindex="0"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./main.js" type="module"></script>
     <script src="dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</body>
 
 </html>
