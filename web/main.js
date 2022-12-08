@@ -14,20 +14,17 @@ window.onload = async () => {
     document.querySelector('#dark-mode-toggle').checked = false;
     // set initial mode if set in local storage
     if (JSON.parse(localStorage.getItem('darkMode'))) {
-        document.body.classList.add("dark-mode");
-        document.body.classList.remove("bg-light");
+        document.querySelector('html').setAttribute('data-bs-theme', 'dark');
         document.querySelector('#dark-mode-toggle').checked = true;
     }
 
     document.querySelector('#dark-mode-toggle').onchange = (e) => {
         if (e.target.checked) {
             localStorage.setItem('darkMode', true);
-            document.body.classList.add("dark-mode");
-            document.body.classList.remove("bg-light");
+            document.querySelector('html').setAttribute('data-bs-theme', 'dark');
         } else {
             localStorage.setItem('darkMode', false);
-            document.body.classList.remove("dark-mode");
-            document.body.classList.add("bg-light");
+            document.querySelector('html').setAttribute('data-bs-theme', 'light');
         }
     }
     // fetch the data, now that page has loaded
