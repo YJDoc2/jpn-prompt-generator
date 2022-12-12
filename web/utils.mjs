@@ -84,63 +84,81 @@ export function clearList(elem) {
 function getCheckboxUl(parentHeader, list) {
     let ul = document.createElement('ul');
     ul.classList = 'list-group';
+
     for (let header of Object.keys(list)) {
         let li = document.createElement('li');
         li.classList = 'list-group-item';
         li.style.userSelect = 'none';
+
         let div = document.createElement('div')
         div.classList = 'form-check'
+
         let check = document.createElement('input');
         check.type = 'checkbox';
         check.classList = 'form-check-input';
         check.id = `${parentHeader}-${header}-check`.replace(' ', '-');
-        check.addEventListener('change', () => {
-            selectionEvent(check, list[header], `${parentHeader}-${header}`);
-        });
-        check.addEventListener('click',(e)=>{e.preventDefault();/* Ignore this here, it is handled in li event listener */})
-        li.addEventListener('mousedown', () => {
-            check.checked = !check.checked;
-            selectionEvent(check, list[header], `${parentHeader}-${header}`);
-        })
-        addDragSelectBehavior(check, li, list[header], `${parentHeader}-${header}`);
+
         let label = document.createElement('label');
         label.classList = 'form-check-label';
         label.setAttribute('for', check.id);
         label.textContent = header;
+
         div.appendChild(check);
         div.appendChild(label);
         li.appendChild(div);
         ul.appendChild(li);
+
+        check.addEventListener('click', (e) => {
+            /* Ignore this here, it is handled in li event listener */
+            e.preventDefault();
+        });
+
+        li.addEventListener('mousedown', () => {
+            // this will handle clicking anywhere in the whole li
+            // including the text label and checkbox itself
+            check.checked = !check.checked;
+            selectionEvent(check, list[header], `${parentHeader}-${header}`);
+        });
+
+        addDragSelectBehavior(check, li, list[header], `${parentHeader}-${header}`);
     }
     return ul;
 }
 
 function getAccordionItem(header, contents, mainId) {
     let kbbHeader = header.replace(' ', '-');
+
     let itemDiv = document.createElement('div');
     itemDiv.classList = 'accordion-item';
+
     let h2 = document.createElement('h2');
     h2.classList = 'accordion-header';
+
     let btn = document.createElement('button');
     btn.classList = 'accordion-button collapsed';
     btn.type = 'button';
     btn.setAttribute('data-bs-toggle', 'collapse');
     btn.setAttribute('data-bs-target', `#${kbbHeader}-content`);
     btn.textContent = kbbHeader;
+
     h2.appendChild(btn);
     itemDiv.appendChild(h2);
+
     let dataDiv = document.createElement('div');
     dataDiv.classList = 'accordion-collapse collapse';
     dataDiv.setAttribute('data-bs-parent', `#${mainId}`);
     dataDiv.id = `${kbbHeader}-content`;
+
     let contentDiv = document.createElement('div');
     contentDiv.classList = 'accordion-body';
+
     let ul = getCheckboxUl(kbbHeader, contents);
+
     contentDiv.appendChild(ul);
     dataDiv.appendChild(contentDiv)
     itemDiv.appendChild(dataDiv);
-    return itemDiv;
 
+    return itemDiv;
 }
 
 function getChapters(list) {

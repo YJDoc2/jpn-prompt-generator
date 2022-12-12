@@ -1,7 +1,7 @@
 "use strict";
 import * as utils from './utils.mjs'
 import { getSelectionGrammarList, getSelectionWordList } from './dataHandler.mjs'
-import { isMouseDown, setMouseDown, setMouseUp } from './stateManager.mjs';
+import { setMouseDown, setMouseUp } from './stateManager.mjs';
 
 let date = new Date();
 // seed to use in rng for the daily prompt
@@ -92,11 +92,6 @@ function setValues(rand) {
     utils.clearList(vocabList);
     utils.clearList(grammarList);
 
-    // as both of lists are large enough by themselves
-    // that even small changes in random will blow up to different indices
-    // we don't need to look out of duplicates. There will be duplicates
-    // very rarely. This will need to implement the duplicate check if
-    // custom lists are implemented
     let temp = new Set();
     for (let i = 0; i < vocabCount; i++) {
         let r = Math.floor((rand() * selectionWordList.length));

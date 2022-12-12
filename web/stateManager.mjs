@@ -1,5 +1,3 @@
-const enteredList = {};
-
 let mouseDown = false;
 let selectedVocab = new Set();
 let selectedGrammar = new Set();
@@ -19,20 +17,18 @@ export function isMouseDown() {
     return mouseDown;
 }
 
+// Drag select behavior is supposed to handle
+// when user clicks in an li and drags it through 
+// several others, all must get their state inverted
 export function addDragSelectBehavior(check, li, data, header) {
-    if (!enteredList[check.id]) {
-        enteredList[check.id] = false;
-    }
 
     li.addEventListener('mouseenter', (e) => {
+        // if mouse is inside and clicked
+        // then invert the state
         if (isMouseDown()) {
             check.checked = !check.checked;
             selectionEvent(check, data, header);
         }
-        enteredList[check.id] = true;
-    });
-    li.addEventListener('mouseleave', () => {
-        enteredList[check.id] = false;
     });
 }
 
