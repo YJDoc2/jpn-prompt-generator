@@ -97,6 +97,7 @@ function getCheckboxUl(parentHeader, list) {
         check.addEventListener('change', () => {
             selectionEvent(check, list[header], `${parentHeader}-${header}`);
         });
+        check.addEventListener('click',(e)=>{e.preventDefault();/* Ignore this here, it is handled in li event listener */})
         li.addEventListener('mousedown', () => {
             check.checked = !check.checked;
             selectionEvent(check, list[header], `${parentHeader}-${header}`);
