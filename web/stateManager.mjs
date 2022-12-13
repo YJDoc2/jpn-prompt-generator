@@ -47,3 +47,11 @@ export function addIdCheckboxMapping(id, check) {
 export function getCheckbox(id) {
     return checkboxes[id];
 }
+
+export function getSelectedVocab() {
+    return selectedVocab;
+}
+
+export function getSelectedGrammar() {
+    return selectedGrammar;
+}

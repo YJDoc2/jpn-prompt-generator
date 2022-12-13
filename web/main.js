@@ -1,7 +1,7 @@
 "use strict";
 import * as utils from './utils.mjs'
 import { getSelectionGrammarList, getSelectionWordList } from './dataHandler.mjs'
-import { setMouseDown, setMouseUp } from './stateManager.mjs';
+import { getSelectedGrammar, getSelectedVocab, setMouseDown, setMouseUp } from './stateManager.mjs';
 
 let date = new Date();
 // seed to use in rng for the daily prompt
@@ -37,11 +37,15 @@ window.onload = async () => {
 // validates carious input values
 function validate() {
     utils.clearList(errorPlaceholder);
-    let n5 = document.querySelector('#n5').checked;
-    let n4 = document.querySelector('#n4').checked;
 
-    if (!n5 && !n4) {
-        throw 'Please select at least one vocab list';
+    let vocabList = getSelectedVocab();
+    if (vocabList.size < 1) {
+        throw 'Please select at least one Vocab list';
+    }
+
+    let grammarList = getSelectedGrammar();
+    if (grammarList.size < 1) {
+        throw 'Please select at least one Grammar point';
     }
 
     let vcount = document.querySelector('#vocabCount').value;
@@ -53,18 +57,6 @@ function validate() {
 
     if (1 > gcount || gcount > 10) {
         throw 'Please enter value between 1 - 10 for grammar count';
-    }
-
-    let lessonStart = document.querySelector('#lessonStart');
-    let lessonEnd = document.querySelector('#lessonEnd');
-    let from = parseInt(lessonStart.value);
-    let upto = parseInt(lessonEnd.value);
-
-    if (isNaN(from) || isNaN(upto)) {
-        throw 'Set valid value for from and to lesson';
-    }
-    if (from > upto) {
-        throw 'from lesson should be less than or equal to upto lesson';
     }
 
     return;
@@ -126,7 +118,7 @@ function setValues(rand) {
         temp.add(point);
         let li = document.createElement('li');
         li.setAttribute('class', 'list-group-item list');
-        li.appendChild(document.createTextNode(`${point.text} : Lesson ${point.lesson}`));
+        li.appendChild(document.createTextNode(point.title));
         grammarList.appendChild(li);
     }
 }

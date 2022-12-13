@@ -1,3 +1,5 @@
+import { getSelectedGrammar, getSelectedVocab } from "./stateManager.mjs";
+
 let dataMap = {};
 
 export function setWordList(newList) {
@@ -30,37 +32,26 @@ export function getDataPoint(id) {
 }
 
 export function getSelectionWordList() {
-    let words = getWordList();
-    let n5Words = words.n5Words;
-    let n4Words = words.n4Words;
-
+    let vocab = getSelectedVocab();
     let ret = [];
-
-    let n5 = document.querySelector('#n5').checked;
-    let n4 = document.querySelector('#n4').checked;
-
-    if (n5) {
-        ret.push(...n5Words);
+    for (let id of vocab) {
+        let points = dataMap[id];
+        if (points) {
+            ret.push(...points);
+        }
     }
-    if (n4) {
-        ret.push(...n4Words);
-    }
-
     return ret;
 }
 
 export function getSelectionGrammarList() {
 
-    let grammar = getGrammarList();
-    let genkiPoints = grammar.genkiGrammar;
-
-    let lessonStart = document.querySelector('#lessonStart');
-    let lessonEnd = document.querySelector('#lessonEnd');
-    let from = parseInt(lessonStart.value);
-    let upto = parseInt(lessonEnd.value);
-    let selected = genkiPoints.filter((p) => {
-        return from <= p.lesson && p.lesson <= upto
-    });
-
+    let grammar = getSelectedGrammar();
+    let selected = [];
+    for (let id of grammar) {
+        let data = dataMap[id];
+        if (data) {
+            selected.push(...data);
+        }
+    }
     return selected;
 }
