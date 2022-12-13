@@ -12,6 +12,18 @@
         input[type=number] {
             appearance: textfield;
         }
+
+        .errorbox {
+            border-color: red;
+            border-width: 2px;
+            border-radius: 0.5rem;
+            border-style: solid;
+            padding: 1rem;
+        }
+
+        .errorbox:empty {
+            display: none;
+        }
     </style>
     <title>JPN Prompt generator</title>
 </head>
@@ -35,9 +47,9 @@
         <!-- Main row for the value input-->
         <div class="row">
             <div class="col col-12 col-md-4 mb-1">
-                <button type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal"
+                <button type="button" class="btn btn-outline-primary btn-lg w-100" data-bs-toggle="modal"
                     data-bs-target="#dataSelectModal">
-                    Select Vocab and Grammar Lists
+                    Select Vocab and Grammar
                 </button>
             </div>
             <div class="col col-12 col-md-4 mb-1">
@@ -63,13 +75,18 @@
         <div id="errorPlaceholder"></div>
 
         <!-- Buttons -->
-        <div class="row">
-            <div class="col col-md-6">
-                <button type="button" class="btn btn-outline-primary btn-lg" id="btnDaily">Get Daily Selection</button>
-            </div>
-            <div class="col col-md-6">
-                <button type="button" class="btn btn-outline-primary btn-lg" id="btnRandom">Get Random
+        <div class="row gy-1">
+            <div class="col col-12 col-md-4">
+                <button type="button" class="btn btn-outline-primary btn-lg w-100 " id="btnDaily">Get Daily
                     Selection</button>
+            </div>
+            <div class="col col-12 col-md-4">
+                <button type="button" class="btn btn-outline-primary btn-lg w-100" id="btnRandom">Get Random
+                    Selection</button>
+            </div>
+            <div class="col col-12 col-md-4">
+                <button type="button" class="btn btn-outline-primary btn-lg w-100" id="btnAddSet" data-bs-toggle="modal"
+                    data-bs-target="#dataUploadModal">Add Custom Set</button>
             </div>
         </div>
     </div>
@@ -201,6 +218,46 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" id="btnClearSelection">Clear All Selections
                             (V+G)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="dataUploadModal" tabindex="-1" aria-labelledby="dataUploadModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="dataUploadModalTitle">Add Custom Set</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="typeRadios" id="vocabTypeRadio"
+                                value="vocab" checked>
+                            <label class="form-check-label" for="vocabTypeRadio">
+                                Vocab Set
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="typeRadios" id="grammarTypeRadio"
+                                value="grammar">
+                            <label class="form-check-label" for="grammarTypeRadio">
+                                Grammar Set
+                            </label>
+                        </div>
+                        <div class="my-3">
+                            <label for="dataName" class="form-label">Title</label>
+                            <input class="form-control" type="text" id="dataNameInput">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dataFile" class="form-label">Upload Data File</label>
+                            <input class="form-control" type="file" id="dataFileInput" accept=".json">
+                        </div>
+                        <div class="mb-2">
+                            <button type="button" class="btn btn-primary w-100" id="btnUpload">Upload</button>
+                        </div>
+                        <div id="dataErrorPlaceholder" class="errorbox"></div>
                     </div>
                 </div>
             </div>

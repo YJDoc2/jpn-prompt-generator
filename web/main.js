@@ -1,6 +1,6 @@
 "use strict";
 import * as utils from './utils.mjs'
-import { getSelectionGrammarList, getSelectionWordList, saveSelectedData } from './dataHandler.mjs'
+import { addUploadedVocabData, getSelectionGrammarList, getSelectionWordList, saveSelectedData } from './dataHandler.mjs'
 import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp, clearSelection } from './stateManager.mjs';
 
 let date = new Date();
@@ -137,3 +137,53 @@ document.querySelector('#dataSelectModal').addEventListener('hidden.bs.modal', (
 document.querySelector('#btnClearSelection').addEventListener('click', () => {
     clearSelection();
 });
+
+document.querySelector('#btnUpload').addEventListener('click', async () => {
+    let fileInput = document.querySelector('#dataFileInput');
+    let file = fileInput.files[0];
+    let dataTitle = document.querySelector('#dataNameInput').value.trim();
+    if (dataTitle.length === 0) {
+        utils.setDataFileError('No title Set');
+        return;
+    }
+    if (!file) {
+        utils.setDataFileError('No file uploaded');
+        return;
+    }
+    if (file.type !== 'application/json') {
+        utils.setDataFileError('Invalid File Type. Only JSON files are supported');
+        return;
+    }
+    let fileData = null;
+    try {
+        fileData = JSON.parse(await file.text());
+    } catch (e) {
+        utils.setDataFileError('Error in parsing uploaded file , see console for details');
+        console.error(e);
+        return;
+    }
+
+    let type = document.querySelector("input[name='typeRadios']:checked").value;
+    try {
+        if (type === 'vocab') {
+            validateVocabData(title, fileData);
+            addUploadedVocabData(fileData);
+        } else {
+            validateGrammarData(title, fileData);
+            addUploadedVocabData(fileData);
+        }
+    } catch (e) {
+        utils.setDataFileError(e);
+        return;
+    }
+
+
+
+    fileInput.value = '';
+    document.querySelector('#dataNameInput').value = '';
+
+
+    let modalElement = document.querySelector('#dataUploadModal');
+    let modal = bootstrap.Modal.getInstance(modalElement);
+    modal.hide();
+})

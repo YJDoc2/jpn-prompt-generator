@@ -134,3 +134,15 @@ function setGrammarId(data) {
         point.id = getId('grammar', title, point.title);
     }
 }
+
+export function validateVocabData(title, data) {
+
+}
+
+export function validateGrammarData(title, data) {
+
+}
+
+export function addUploadedVocabData(data) { }
+
+export function addUploadedGrammarData(data) { }
