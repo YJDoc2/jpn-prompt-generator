@@ -1,7 +1,7 @@
 "use strict";
 import * as utils from './utils.mjs'
 import { getSelectionGrammarList, getSelectionWordList, saveSelectedData } from './dataHandler.mjs'
-import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp } from './stateManager.mjs';
+import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp, clearSelection } from './stateManager.mjs';
 
 let date = new Date();
 // seed to use in rng for the daily prompt
@@ -132,4 +132,8 @@ document.addEventListener('mouseup', () => {
 
 document.querySelector('#dataSelectModal').addEventListener('hidden.bs.modal', () => {
     saveSelectedData();
-})
+});
+
+document.querySelector('#btnClearSelection').addEventListener('click', () => {
+    clearSelection();
+});

@@ -1,4 +1,4 @@
-import { loadData, getSelectedData } from "./dataHandler.mjs";
+import { loadData, getSelectedData, saveSelectedData } from "./dataHandler.mjs";
 import { populateListContents } from "./utils.mjs";
 
 let mouseDown = false;
@@ -101,4 +101,22 @@ export function getSelectedVocab() {
 
 export function getSelectedGrammar() {
     return Array.from(selectedGrammar);
+}
+
+export function clearSelection() {
+    for (let v of selectedVocab) {
+        let check = checkboxes[v];
+        if (check) {
+            check.checked = false;
+        }
+    }
+    selectedVocab.clear();
+    for (let g of selectedGrammar) {
+        let check = checkboxes[g];
+        if (check) {
+            check.checked = false;
+        }
+    }
+    selectedGrammar.clear();
+    saveSelectedData();
 }

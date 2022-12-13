@@ -132,13 +132,13 @@ export function populateListContents() {
     grammarPane.innerHTML = '';
 
     let _div = document.createElement('div');
-    _div.classList = 'container mt-2';
+    _div.classList = 'container my-2';
     let ul = getCheckboxUl(Object.keys(words).map((k) => words[k]));
     _div.appendChild(ul);
     vocabPane.appendChild(_div);
 
     _div = document.createElement('div');
-    _div.classList = 'container mt-2';
+    _div.classList = 'container my-2';
     let accordionDiv = document.createElement('div');
     accordionDiv.classList = 'accordion';
     accordionDiv.id = 'grammarAccordion';
