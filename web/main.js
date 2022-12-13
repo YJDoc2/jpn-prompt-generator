@@ -1,7 +1,7 @@
 "use strict";
 import * as utils from './utils.mjs'
-import { getSelectionGrammarList, getSelectionWordList } from './dataHandler.mjs'
-import { getSelectedGrammar, getSelectedVocab, setMouseDown, setMouseUp } from './stateManager.mjs';
+import { getSelectionGrammarList, getSelectionWordList, saveSelectedData } from './dataHandler.mjs'
+import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp } from './stateManager.mjs';
 
 let date = new Date();
 // seed to use in rng for the daily prompt
@@ -31,6 +31,7 @@ window.onload = async () => {
     // fetch the data, now that page has loaded
     await utils.loadData();
     utils.populateListContents();
+    initState();
 
 };
 
@@ -39,12 +40,12 @@ function validate() {
     utils.clearList(errorPlaceholder);
 
     let vocabList = getSelectedVocab();
-    if (vocabList.size < 1) {
+    if (vocabList.length < 1) {
         throw 'Please select at least one Vocab list';
     }
 
     let grammarList = getSelectedGrammar();
-    if (grammarList.size < 1) {
+    if (grammarList.length < 1) {
         throw 'Please select at least one Grammar point';
     }
 
@@ -146,3 +147,7 @@ document.addEventListener('mousedown', () => {
 document.addEventListener('mouseup', () => {
     setMouseUp();
 });
+
+document.querySelector('#dataSelectModal').addEventListener('hidden.bs.modal',()=>{
+    saveSelectedData();
+})

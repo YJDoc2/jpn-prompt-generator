@@ -23,6 +23,17 @@ export function getUpdateData() {
     return JSON.parse(localStorage.getItem('updateData')) || {};
 }
 
+export function saveSelectedData(){
+    let vocab = getSelectedVocab();
+    let grammar = getSelectedGrammar();
+    localStorage.setItem('selectedData',JSON.stringify({vocab,grammar}));
+}
+
+export function getSelectedData(){
+    return JSON.parse(localStorage.getItem('selectedData')) || {};
+}
+
+
 export function addIdPointMapping(id, data) {
     dataMap[id] = data
 }

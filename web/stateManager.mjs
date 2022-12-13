@@ -1,7 +1,20 @@
+import { getSelectedData } from "./dataHandler.mjs";
+
 let mouseDown = false;
 let selectedVocab = new Set();
 let selectedGrammar = new Set();
 let checkboxes = {};
+
+
+export function initState() {
+    let { vocab, grammar } = getSelectedData();
+    if (vocab) {
+        selectedVocab = new Set(vocab);
+    }
+    if (grammar) {
+        selectedGrammar = new Set(grammar);
+    }
+}
 
 export function setMouseDown() {
     mouseDown = true;
@@ -49,9 +62,9 @@ export function getCheckbox(id) {
 }
 
 export function getSelectedVocab() {
-    return selectedVocab;
+    return Array.from(selectedVocab);
 }
 
 export function getSelectedGrammar() {
-    return selectedGrammar;
+    return Array.from(selectedGrammar);
 }
