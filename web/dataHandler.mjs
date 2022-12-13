@@ -1,4 +1,5 @@
-"use strict";
+let dataMap = {};
+
 export function setWordList(newList) {
     localStorage.setItem('WordList', JSON.stringify(newList));
 }
@@ -18,6 +19,14 @@ export function setUpdateData(data) {
 }
 export function getUpdateData() {
     return JSON.parse(localStorage.getItem('updateData')) || {};
+}
+
+export function addIdPointMapping(id, data) {
+    dataMap[id] = data
+}
+
+export function getDataPoint(id) {
+    return dataMap[id];
 }
 
 export function getSelectionWordList() {

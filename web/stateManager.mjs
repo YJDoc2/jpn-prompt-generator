@@ -1,7 +1,7 @@
 let mouseDown = false;
 let selectedVocab = new Set();
 let selectedGrammar = new Set();
-
+let checkboxes = {};
 
 export function setMouseDown() {
     mouseDown = true;
@@ -38,4 +38,12 @@ export function selectionEvent(check) {
         selected.delete(check.id);
     }
 
+}
+
+export function addIdCheckboxMapping(id, check) {
+    checkboxes[id] = check;
+}
+
+export function getCheckbox(id) {
+    return checkboxes[id];
 }

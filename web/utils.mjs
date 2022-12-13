@@ -1,6 +1,6 @@
 "use strict";
-import { setGrammarList, getGrammarList, getWordList, setWordList, setUpdateData, getUpdateData } from "./dataHandler.mjs";
-import { addDragSelectBehavior, selectionEvent } from "./stateManager.mjs";
+import { setGrammarList, getGrammarList, getWordList, setWordList, setUpdateData, getUpdateData, addIdPointMapping, getDataPoint } from "./dataHandler.mjs";
+import { addIdCheckboxMapping, addDragSelectBehavior, selectionEvent } from "./stateManager.mjs";
 
 
 export function showError(message, type) {
@@ -60,7 +60,20 @@ export async function loadData() {
         setUpdateData(updateData);
     }
 
+    wordList = getWordList();
+    grammarList = getGrammarList();
 
+    for (let key of Object.keys(wordList)) {
+        let wordSet = wordList[key];
+        addIdPointMapping(wordSet.id, wordSet.data);
+    }
+
+    for (let key of Object.keys(grammarList)) {
+        let grammar = grammarList[key];
+        for (let chapter of grammar.data) {
+            addIdPointMapping(chapter.id, chapter.points);
+        }
+    }
 }
 
 // from https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
@@ -102,6 +115,8 @@ function getCheckboxUl(list) {
         check.type = 'checkbox';
         check.classList = 'form-check-input';
         check.id = point.id;
+
+        addIdCheckboxMapping(check.id, check);
 
         let label = document.createElement('label');
         label.classList = 'form-check-label';
