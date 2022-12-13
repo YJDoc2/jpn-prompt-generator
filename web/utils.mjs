@@ -46,6 +46,11 @@ export async function loadData() {
         let n4Words = await (await fetch('./data/n4Filtered.json')).json();
         let genkiPoints = await (await fetch('./data/genkiGrammarPoints.json')).json();
 
+
+        n5Words.id = getId('vocab',n5Words.title);
+        n4Words.id = getId('vocab',n4Words.title);
+        setGrammarId(genkiPoints);
+
         wordList.n5Words = n5Words;
         wordList.n4Words = n4Words;
         grammarList.genkiGrammar = genkiPoints;
@@ -81,11 +86,11 @@ export function clearList(elem) {
 }
 
 
-function getCheckboxUl(parentHeader, list) {
+function getCheckboxUl(list) {
     let ul = document.createElement('ul');
     ul.classList = 'list-group';
 
-    for (let header of Object.keys(list)) {
+    for (let point of list) {
         let li = document.createElement('li');
         li.classList = 'list-group-item';
         li.style.userSelect = 'none';
@@ -96,12 +101,12 @@ function getCheckboxUl(parentHeader, list) {
         let check = document.createElement('input');
         check.type = 'checkbox';
         check.classList = 'form-check-input';
-        check.id = `${parentHeader}-${header}-check`.replace(' ', '-');
+        check.id = point.id;
 
         let label = document.createElement('label');
         label.classList = 'form-check-label';
         label.setAttribute('for', check.id);
-        label.textContent = header;
+        label.textContent = point.title;
 
         div.appendChild(check);
         div.appendChild(label);
@@ -117,16 +122,17 @@ function getCheckboxUl(parentHeader, list) {
             // this will handle clicking anywhere in the whole li
             // including the text label and checkbox itself
             check.checked = !check.checked;
-            selectionEvent(check, list[header], `${parentHeader}-${header}`);
+            selectionEvent(check, point.title);
         });
 
-        addDragSelectBehavior(check, li, list[header], `${parentHeader}-${header}`);
+        addDragSelectBehavior(check, li);
     }
     return ul;
 }
 
 function getAccordionItem(header, contents, mainId) {
-    let kbbHeader = header.replace(' ', '-');
+
+    let kbbHeader = getId(header);
 
     let itemDiv = document.createElement('div');
     itemDiv.classList = 'accordion-item';
@@ -139,7 +145,7 @@ function getAccordionItem(header, contents, mainId) {
     btn.type = 'button';
     btn.setAttribute('data-bs-toggle', 'collapse');
     btn.setAttribute('data-bs-target', `#${kbbHeader}-content`);
-    btn.textContent = kbbHeader;
+    btn.textContent = header;
 
     h2.appendChild(btn);
     itemDiv.appendChild(h2);
@@ -152,7 +158,7 @@ function getAccordionItem(header, contents, mainId) {
     let contentDiv = document.createElement('div');
     contentDiv.classList = 'accordion-body';
 
-    let ul = getCheckboxUl(kbbHeader, contents);
+    let ul = getCheckboxUl(contents);
 
     contentDiv.appendChild(ul);
     dataDiv.appendChild(contentDiv)
@@ -184,7 +190,7 @@ export function populateListContents() {
 
     let _div = document.createElement('div');
     _div.classList = 'container mt-2';
-    let ul = getCheckboxUl('vocab', words);
+    let ul = getCheckboxUl(Object.keys(words).map((k)=>words[k]));
     _div.appendChild(ul);
     vocabPane.appendChild(_div);
 
@@ -194,10 +200,21 @@ export function populateListContents() {
     accordionDiv.classList = 'accordion';
     accordionDiv.id = 'grammarAccordion';
     for (let key of Object.keys(grammars)) {
-        let chapters = getChapters(grammars[key]);
+        let chapters = grammars[key].data;
         let item = getAccordionItem(key, chapters, 'grammarAccordion');
         accordionDiv.appendChild(item);
     }
     _div.appendChild(accordionDiv);
     grammarPane.appendChild(_div);
+}
+
+export function getId(...strings) {
+    return strings.map((s) => s.toLowerCase().replace(' ', '-').replace('_', '-')).join('_')
+}
+
+export function setGrammarId(data){
+    let title = data.title;
+    for(let point of data.data){
+        point.id = getId(title,point.title);
+    }
 }

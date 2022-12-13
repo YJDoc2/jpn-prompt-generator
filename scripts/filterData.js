@@ -65,8 +65,8 @@ for (let word of n4.data) {
 console.debug('n4 filtering complte');
 
 console.debug('writing data to files');
-fs.writeFileSync(path.join(dataDirPath, 'n5Filtered.json'), JSON.stringify(n5Filtered));
-fs.writeFileSync(path.join(dataDirPath, 'n4Filtered.json'), JSON.stringify(n4Filtered));
+fs.writeFileSync(path.join(dataDirPath, 'n5Filtered.json'), JSON.stringify({ title: "N5 Vocab", data: n5Filtered }));
+fs.writeFileSync(path.join(dataDirPath, 'n4Filtered.json'), JSON.stringify({ title: "N4 Vocab", data: n4Filtered }));
 console.debug('data writing complete');
 
 console.log('filtering complete');

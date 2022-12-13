@@ -1,386 +1,449 @@
-[
-    {
-        "text":"Basic Xはｙです",
-        "lesson":1
-    },
-    {
-        "text":"Question Particle か",
-        "lesson":1
-    },
-    {
-        "text":"XのY",
-        "lesson":1
-    },
-    {
-        "text":"Time, AM-PM",
-        "lesson":1
-    },
-    {
-        "text":"これ・それ・あれ・どれ",
-        "lesson":2
-    },
-    {
-        "text":"この。その。あの。どの",
-        "lesson":2
-    },
-    {
-        "text":"ここ・そこ・あそこ・どこ",
-        "lesson":2
-    },
-    {
-        "text":"だれの",
-        "lesson":2
-    },
-    {
-        "text":"も　Particle for 'too'",
-        "lesson":2
-    },
-    {
-        "text":"。。。じゃないです",
-        "lesson":2
-    },
-    {
-        "text":"。。。ね・。。。よ",
-        "lesson":2
-    },
-    {
-        "text":"。。。ください",
-        "lesson":2
-    },
-    {
-        "text":"。。。をおねがいします",
-        "lesson":2
-    },
-    {
-        "text":"0-100000 Numbers",
-        "lesson":2
-    },
-    {
-        "text":"Polite present tense of mix of total 5 ごだん　and いちだん verbs (not in the vocab selection)",
-        "lesson":3
-    },
-    {
-        "text":"を。で。に。へ　Particle(s)",
-        "lesson":3
-    },
-    {
-        "text":"に for time reference",
-        "lesson":3
-    },
-    {
-        "text":"Polite invitation using 。。。ませんか",
-        "lesson":3
-    },
-    {
-        "text":"ぜんぜん・よく。ときどき。あまり・毎日",
-        "lesson":3
-    },
-    {
-        "text":"は as topic particle",
-        "lesson":3
-    },
-    {
-        "text":"行く・来る (use one or both verbs)",
-        "lesson":3
-    },
-    {
-        "text":"あります・います",
-        "lesson":4
-    },
-    {
-        "text":"右・左・前・後ろ・中・上・下・近く・そば・隣・横",
-        "lesson":4
-    },
-    {
-        "text":"でした・じゃなかった",
-        "lesson":4
-    },
-    {
-        "text":"Polite past tense of mix of total 5 五段 and 一段 verbs (not in the vocab selection)",
-        "lesson":4
-    },
-    {
-        "text":"にも・でも・へも",
-        "lesson":4
-    },
-    {
-        "text":"。。。時間　for duration",
-        "lesson":4
-    },
-    {
-        "text":"たくさん",
-        "lesson":4
-    },
-    {
-        "text":"と for connecting nouns and as 'together with'",
-        "lesson":4
-    },
-    {
-        "text":"Use mix of total 5 ーい and ーな adjectives in present tense (not in the vocab section)",
-        "lesson":5
-    },
-    {
-        "text":"Use mix of total 5 ーい and ーな adjectives in past tense (not in the vocab section)",
-        "lesson":5
-    },
-    {
-        "text":"好き and 嫌い",
-        "lesson":5
-    },
-    {
-        "text":"ましょう (Let's)",
-        "lesson":5
-    },
-    {
-        "text":"ましょうか (polite invitation)",
-        "lesson":5
-    },
-    {
-        "text":"枚 counter",
-        "lesson":5
-    },
-    {
-        "text":"てください",
-        "lesson":6
-    },
-    {
-        "text":"て for to describe sequence of activities",
-        "lesson":6
-    },
-    {
-        "text":"てもいいです（か）",
-        "lesson":6
-    },
-    {
-        "text":"てはいけません",
-        "lesson":6
-    },
-    {
-        "text":"A。Bから。",
-        "lesson":6
-    },
-    {
-        "text":"ましょうか for offering assistance",
-        "lesson":6
-    },
-    {
-        "text":"右。左　に曲がる",
-        "lesson":6
-    },
-    {
-        "text":"道を渡る",
-        "lesson":6
-    },
-    {
-        "text":"道の右側・道の左側",
-        "lesson":6
-    },
-    {
-        "text":"目 as ordinal number suffix",
-        "lesson":6
-    },
-    {
-        "text":"ている for action in progress",
-        "lesson":7
-    },
-    {
-        "text":"ている as result of a change",
-        "lesson":7
-    },
-    {
-        "text":"行っている・来ている",
-        "lesson":7
-    },
-    {
-        "text":"Describing using A が B",
-        "lesson":7
-    },
-    {
-        "text":"て form of い・な Adjectives (not in vocab selection) ",
-        "lesson":7
-    },
-    {
-        "text":"て for of nouns (not in vocab selection)",
-        "lesson":7
-    },
-    {
-        "text":"に行く",
-        "lesson":7
-    },
-    {
-        "text":"人 counter",
-        "lesson":7
-    },
-    {
-        "text":"Short present tense of mix of total 5 五段　and 一段 verbs (not in the vocab selection)",
-        "lesson":8
-    },
-    {
-        "text":"Use mix of total 5 ーい and ーな adjectives in present tense short form (not in the vocab section)",
-        "lesson":8
-    },
-    {
-        "text":"Use だ・じゃない",
-        "lesson":8
-    },
-    {
-        "text":"。。。と思います",
-        "lesson":8
-    },
-    {
-        "text":"。。と言っていました",
-        "lesson":8
-    },
-    {
-        "text":"。。。ないでください",
-        "lesson":8
-    },
-    {
-        "text":"Nominalizing verbs using のが",
-        "lesson":8
-    },
-    {
-        "text":"何か・何も",
-        "lesson":8
-    },
-    {
-        "text":"遅く・早く adverbs",
-        "lesson":8
-    },
-    {
-        "text":"Short past tense of mix of total 5 五段　and 一段 verbs (not in the vocab selection)",
-        "lesson":9
-    },
-    {
-        "text":"Use mix of total 5 ーい and ーな adjectives in present tense short form (not in the vocab section)",
-        "lesson":9
-    },
-    {
-        "text":"Use だった・じゃなかった",
-        "lesson":8
-    },
-    {
-        "text":"。。。と思います",
-        "lesson":9
-    },
-    {
-        "text":"。。と言っていました",
-        "lesson":9
-    },
-    {
-        "text":"Using Short form phrase to qualify Nouns",
-        "lesson":9
-    },
-    {
-        "text":"もう。。。ました",
-        "lesson":9
-    },
-    {
-        "text":"まだ。。。ていません",
-        "lesson":9
-    },
-    {
-        "text":"AからB",
-        "lesson":9
-    },
-    {
-        "text":"Aの方が Bより",
-        "lesson":10
-    },
-    {
-        "text":"AとBと どっちの方が",
-        "lesson":10
-    },
-    {
-        "text":"。。。のなかで。。。一番。。。",
-        "lesson":10
-    },
-    {
-        "text":"の as 'one' to avoid repetition",
-        "lesson":10
-    },
-    {
-        "text":"。。。つもり",
-        "lesson":10
-    },
-    {
-        "text":"い Adjective+なる",
-        "lesson":10
-    },
-    {
-        "text":"な Adjective+なる",
-        "lesson":10
-    },
-    {
-        "text":"何か・何も",
-        "lesson":10
-    },
-    {
-        "text":"誰か・誰も",
-        "lesson":10
-    },
-    {
-        "text":"どこか・どこも",
-        "lesson":10
-    },
-    {
-        "text":"で to show means of transportation and instruments of use",
-        "lesson":10
-    },
-    {
-        "text":"。。。て来る・。。。て行く",
-        "lesson":10
-    },
-    {
-        "text":"。。。たい",
-        "lesson":11
-    },
-    {
-        "text":"。。。たり。。。たりする",
-        "lesson":11
-    },
-    {
-        "text":"。。。ことがある",
-        "lesson":11
-    },
-    {
-        "text":"や to list examples",
-        "lesson":11
-    },
-    {
-        "text":"だけ as just",
-        "lesson":11
-    },
-    {
-        "text":"に to indicate occasion",
-        "lesson":11
-    },
-    {
-        "text":"には to describe places",
-        "lesson":11
-    },
-    {
-        "text":"。。。んです",
-        "lesson":12
-    },
-    {
-        "text":"。。。すぎる",
-        "lesson":12
-    },
-    {
-        "text":"方がいい",
-        "lesson":12
-    },
-    {
-        "text":"AのでB",
-        "lesson":12
-    },
-    {
-        "text":"。。。なければいけません",
-        "lesson":12
-    },
-    {
-        "text":"。。。でしょうか",
-        "lesson":12
-    }
-]
+{
+    "title": "Genki 1 Grammar",
+    "data": [
+        {
+            "title": "Chapter 1",
+            "points": [
+                {
+                    "title": "Basic Xはｙです",
+                    "links": []
+                },
+                {
+                    "title": "Question Particle か",
+                    "links": []
+                },
+                {
+                    "title": "XのY",
+                    "links": []
+                },
+                {
+                    "title": "Time, AM-PM",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 2",
+            "points": [
+                {
+                    "title": "これ・それ・あれ・どれ",
+                    "links": []
+                },
+                {
+                    "title": "この。その。あの。どの",
+                    "links": []
+                },
+                {
+                    "title": "ここ・そこ・あそこ・どこ",
+                    "links": []
+                },
+                {
+                    "title": "だれの",
+                    "links": []
+                },
+                {
+                    "title": "も　Particle for 'too'",
+                    "links": []
+                },
+                {
+                    "title": "。。。じゃないです",
+                    "links": []
+                },
+                {
+                    "title": "。。。ね・。。。よ",
+                    "links": []
+                },
+                {
+                    "title": "。。。ください",
+                    "links": []
+                },
+                {
+                    "title": "。。。をおねがいします",
+                    "links": []
+                },
+                {
+                    "title": "0-100000 Numbers",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 3",
+            "points": [
+                {
+                    "title": "Polite present tense of mix of total 5 ごだん　and いちだん verbs (not in the vocab selection)",
+                    "links": []
+                },
+                {
+                    "title": "を。で。に。へ　Particle(s)",
+                    "links": []
+                },
+                {
+                    "title": "に for time reference",
+                    "links": []
+                },
+                {
+                    "title": "Polite invitation using 。。。ませんか",
+                    "links": []
+                },
+                {
+                    "title": "ぜんぜん・よく。ときどき。あまり・毎日",
+                    "links": []
+                },
+                {
+                    "title": "は as topic particle",
+                    "links": []
+                },
+                {
+                    "title": "行く・来る (use one or both verbs)",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 4",
+            "points": [
+                {
+                    "title": "あります・います",
+                    "links": []
+                },
+                {
+                    "title": "右・左・前・後ろ・中・上・下・近く・そば・隣・横",
+                    "links": []
+                },
+                {
+                    "title": "でした・じゃなかった",
+                    "links": []
+                },
+                {
+                    "title": "Polite past tense of mix of total 5 五段 and 一段 verbs (not in the vocab selection)",
+                    "links": []
+                },
+                {
+                    "title": "にも・でも・へも",
+                    "links": []
+                },
+                {
+                    "title": "。。。時間　for duration",
+                    "links": []
+                },
+                {
+                    "title": "たくさん",
+                    "links": []
+                },
+                {
+                    "title": "と for connecting nouns and as 'together with'",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 5",
+            "points": [
+                {
+                    "title": "Use mix of total 5 ーい and ーな adjectives in present tense (not in the vocab section)",
+                    "links": []
+                },
+                {
+                    "title": "Use mix of total 5 ーい and ーな adjectives in past tense (not in the vocab section)",
+                    "links": []
+                },
+                {
+                    "title": "好き and 嫌い",
+                    "links": []
+                },
+                {
+                    "title": "ましょう (Let's)",
+                    "links": []
+                },
+                {
+                    "title": "ましょうか (polite invitation)",
+                    "links": []
+                },
+                {
+                    "title": "枚 counter",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 6",
+            "points": [
+                {
+                    "title": "てください",
+                    "links": []
+                },
+                {
+                    "title": "て for to describe sequence of activities",
+                    "links": []
+                },
+                {
+                    "title": "てもいいです（か）",
+                    "links": []
+                },
+                {
+                    "title": "てはいけません",
+                    "links": []
+                },
+                {
+                    "title": "A。Bから。",
+                    "links": []
+                },
+                {
+                    "title": "ましょうか for offering assistance",
+                    "links": []
+                },
+                {
+                    "title": "右。左　に曲がる",
+                    "links": []
+                },
+                {
+                    "title": "道を渡る",
+                    "links": []
+                },
+                {
+                    "title": "道の右側・道の左側",
+                    "links": []
+                },
+                {
+                    "title": "目 as ordinal number suffix",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 7",
+            "points": [
+                {
+                    "title": "ている for action in progress",
+                    "links": []
+                },
+                {
+                    "title": "ている as result of a change",
+                    "links": []
+                },
+                {
+                    "title": "行っている・来ている",
+                    "links": []
+                },
+                {
+                    "title": "Describing using A が B",
+                    "links": []
+                },
+                {
+                    "title": "て form of い・な Adjectives (not in vocab selection) ",
+                    "links": []
+                },
+                {
+                    "title": "て for of nouns (not in vocab selection)",
+                    "links": []
+                },
+                {
+                    "title": "に行く",
+                    "links": []
+                },
+                {
+                    "title": "人 counter",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 8",
+            "points": [
+                {
+                    "title": "Short present tense of mix of total 5 五段　and 一段 verbs (not in the vocab selection)",
+                    "links": []
+                },
+                {
+                    "title": "Use mix of total 5 ーい and ーな adjectives in present tense short form (not in the vocab section)",
+                    "links": []
+                },
+                {
+                    "title": "Use だ・じゃない",
+                    "links": []
+                },
+                {
+                    "title": "。。。と思います",
+                    "links": []
+                },
+                {
+                    "title": "。。と言っていました",
+                    "links": []
+                },
+                {
+                    "title": "。。。ないでください",
+                    "links": []
+                },
+                {
+                    "title": "Nominalizing verbs using のが",
+                    "links": []
+                },
+                {
+                    "title": "何か・何も",
+                    "links": []
+                },
+                {
+                    "title": "遅く・早く adverbs",
+                    "links": []
+                },
+                {
+                    "title": "Use だった・じゃなかった",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 9",
+            "points": [
+                {
+                    "title": "Short past tense of mix of total 5 五段　and 一段 verbs (not in the vocab selection)",
+                    "links": []
+                },
+                {
+                    "title": "Use mix of total 5 ーい and ーな adjectives in present tense short form (not in the vocab section)",
+                    "links": []
+                },
+                {
+                    "title": "。。。と思います",
+                    "links": []
+                },
+                {
+                    "title": "。。と言っていました",
+                    "links": []
+                },
+                {
+                    "title": "Using Short form phrase to qualify Nouns",
+                    "links": []
+                },
+                {
+                    "title": "もう。。。ました",
+                    "links": []
+                },
+                {
+                    "title": "まだ。。。ていません",
+                    "links": []
+                },
+                {
+                    "title": "AからB",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 10",
+            "points": [
+                {
+                    "title": "Aの方が Bより",
+                    "links": []
+                },
+                {
+                    "title": "AとBと どっちの方が",
+                    "links": []
+                },
+                {
+                    "title": "。。。のなかで。。。一番。。。",
+                    "links": []
+                },
+                {
+                    "title": "の as 'one' to avoid repetition",
+                    "links": []
+                },
+                {
+                    "title": "。。。つもり",
+                    "links": []
+                },
+                {
+                    "title": "い Adjective+なる",
+                    "links": []
+                },
+                {
+                    "title": "な Adjective+なる",
+                    "links": []
+                },
+                {
+                    "title": "何か・何も",
+                    "links": []
+                },
+                {
+                    "title": "誰か・誰も",
+                    "links": []
+                },
+                {
+                    "title": "どこか・どこも",
+                    "links": []
+                },
+                {
+                    "title": "で to show means of transportation and instruments of use",
+                    "links": []
+                },
+                {
+                    "title": "。。。て来る・。。。て行く",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 11",
+            "points": [
+                {
+                    "title": "。。。たい",
+                    "links": []
+                },
+                {
+                    "title": "。。。たり。。。たりする",
+                    "links": []
+                },
+                {
+                    "title": "。。。ことがある",
+                    "links": []
+                },
+                {
+                    "title": "や to list examples",
+                    "links": []
+                },
+                {
+                    "title": "だけ as just",
+                    "links": []
+                },
+                {
+                    "title": "に to indicate occasion",
+                    "links": []
+                },
+                {
+                    "title": "には to describe places",
+                    "links": []
+                }
+            ]
+        },
+        {
+            "title": "Chapter 12",
+            "points": [
+                {
+                    "title": "。。。んです",
+                    "links": []
+                },
+                {
+                    "title": "。。。すぎる",
+                    "links": []
+                },
+                {
+                    "title": "方がいい",
+                    "links": []
+                },
+                {
+                    "title": "AのでB",
+                    "links": []
+                },
+                {
+                    "title": "。。。なければいけません",
+                    "links": []
+                },
+                {
+                    "title": "。。。でしょうか",
+                    "links": []
+                }
+            ]
+        }
+    ]
+}

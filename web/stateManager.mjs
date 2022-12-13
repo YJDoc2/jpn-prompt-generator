@@ -20,27 +20,27 @@ export function isMouseDown() {
 // Drag select behavior is supposed to handle
 // when user clicks in an li and drags it through 
 // several others, all must get their state inverted
-export function addDragSelectBehavior(check, li, data, header) {
+export function addDragSelectBehavior(check, li) {
 
     li.addEventListener('mouseenter', (e) => {
         // if mouse is inside and clicked
         // then invert the state
         if (isMouseDown()) {
             check.checked = !check.checked;
-            selectionEvent(check, data, header);
+            selectionEvent(check, li.textContent);
         }
     });
 }
 
-export function selectionEvent(check, data, header) {
+export function selectionEvent(check, title) {
     let dataList = check.id.startsWith('vocab') ? selectedVocabData : selectedGrammarData;
     let selected = check.id.startsWith('vocab') ? selectedVocab : selectedGrammar;
     if (check.checked) {
-        dataList.add(data);
-        selected.add(header);
+        dataList.add(title);
+        selected.add(check.id);
     } else {
-        dataList.delete(data);
-        selected.delete(header);
+        dataList.delete(title);
+        selected.delete(check.id);
     }
     displaySelection();
 }
