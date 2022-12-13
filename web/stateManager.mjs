@@ -32,9 +32,21 @@ export async function initState() {
     let { vocab, grammar } = getSelectedData();
     if (vocab) {
         selectedVocab = new Set(vocab);
+        for (let v of vocab) {
+            let check = getCheckbox(v);
+            if (check) {
+                check.checked = true;
+            }
+        }
     }
     if (grammar) {
         selectedGrammar = new Set(grammar);
+        for (let g of grammar) {
+            let check = getCheckbox(g);
+            if (check) {
+                check.checked = true;
+            }
+        }
     }
 }
 
