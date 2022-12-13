@@ -10,6 +10,7 @@ This is the scheme used to verify the uploaded data, and stored with the `raw` k
 ```json
 {
     "title":"string", // title of the set, will be used to denote the set in UI
+    "id":"string", // internally generated id
     "data":[
         {
             "text":"string", // The text to be displayed, i.e. the actual vocab
@@ -27,6 +28,7 @@ This is the scheme used to verify the uploaded data, and stored with the `raw` k
     "data":[
         {
             "title":"string", // the title to be shown in UI for this subset
+            "id":"string", // internally generated id
             "points":[
                 {    // if the point is of string type, it will be considered as the text, and the links section will be empty array
                     "text":"string", //  the text to be shown, i.e. the  actual grammar point

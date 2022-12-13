@@ -47,8 +47,8 @@ export async function loadData() {
         let genkiPoints = await (await fetch('./data/genkiGrammarPoints.json')).json();
 
 
-        n5Words.id = getId('vocab',n5Words.title);
-        n4Words.id = getId('vocab',n4Words.title);
+        n5Words.id = getId('vocab', n5Words.title);
+        n4Words.id = getId('vocab', n4Words.title);
         setGrammarId(genkiPoints);
 
         wordList.n5Words = n5Words;
@@ -122,7 +122,7 @@ function getCheckboxUl(list) {
             // this will handle clicking anywhere in the whole li
             // including the text label and checkbox itself
             check.checked = !check.checked;
-            selectionEvent(check, point.title);
+            selectionEvent(check);
         });
 
         addDragSelectBehavior(check, li);
@@ -167,17 +167,6 @@ function getAccordionItem(header, contents, mainId) {
     return itemDiv;
 }
 
-function getChapters(list) {
-    let mapping = {};
-    for (let item of list) {
-        if (!mapping[item.lesson]) {
-            mapping[item.lesson] = [];
-        }
-        mapping[item.lesson].push(item);
-    }
-    return mapping;
-}
-
 export function populateListContents() {
 
     let words = getWordList();
@@ -190,7 +179,7 @@ export function populateListContents() {
 
     let _div = document.createElement('div');
     _div.classList = 'container mt-2';
-    let ul = getCheckboxUl(Object.keys(words).map((k)=>words[k]));
+    let ul = getCheckboxUl(Object.keys(words).map((k) => words[k]));
     _div.appendChild(ul);
     vocabPane.appendChild(_div);
 
@@ -209,12 +198,13 @@ export function populateListContents() {
 }
 
 export function getId(...strings) {
-    return strings.map((s) => s.toLowerCase().replace(' ', '-').replace('_', '-')).join('_')
+    return strings.map((s) => s.toLowerCase().replaceAll(' ', '-').replaceAll('_', '-')).join('_')
 }
 
-export function setGrammarId(data){
+export function setGrammarId(data) {
     let title = data.title;
-    for(let point of data.data){
-        point.id = getId(title,point.title);
+    for (let point of data.data) {
+        point.id = getId('grammar', title, point.title);
+        console.log(point.id);
     }
 }

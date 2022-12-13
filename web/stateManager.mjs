@@ -1,8 +1,6 @@
 let mouseDown = false;
 let selectedVocab = new Set();
 let selectedGrammar = new Set();
-let selectedVocabData = new Set();
-let selectedGrammarData = new Set();
 
 
 export function setMouseDown() {
@@ -27,28 +25,17 @@ export function addDragSelectBehavior(check, li) {
         // then invert the state
         if (isMouseDown()) {
             check.checked = !check.checked;
-            selectionEvent(check, li.textContent);
+            selectionEvent(check);
         }
     });
 }
 
-export function selectionEvent(check, title) {
-    let dataList = check.id.startsWith('vocab') ? selectedVocabData : selectedGrammarData;
+export function selectionEvent(check) {
     let selected = check.id.startsWith('vocab') ? selectedVocab : selectedGrammar;
     if (check.checked) {
-        dataList.add(title);
         selected.add(check.id);
     } else {
-        dataList.delete(title);
         selected.delete(check.id);
     }
-    displaySelection();
-}
 
-function displaySelection() {
-    let vocab = document.querySelector('#selectedVocab');
-    let grammar = document.querySelector('#selectedGrammar');
-
-    vocab.textContent = JSON.stringify(Array.from(selectedVocab));
-    grammar.textContent = JSON.stringify(Array.from(selectedGrammar));
 }
