@@ -12,26 +12,8 @@ const errorPlaceholder = document.getElementById('errorPlaceholder');
 
 
 window.onload = async () => {
-    document.querySelector('#dark-mode-toggle').checked = false;
-    // set initial mode if set in local storage
-    if (JSON.parse(localStorage.getItem('darkMode'))) {
-        document.querySelector('html').setAttribute('data-bs-theme', 'dark');
-        document.querySelector('#dark-mode-toggle').checked = true;
-    }
 
-    document.querySelector('#dark-mode-toggle').onchange = (e) => {
-        if (e.target.checked) {
-            localStorage.setItem('darkMode', true);
-            document.querySelector('html').setAttribute('data-bs-theme', 'dark');
-        } else {
-            localStorage.setItem('darkMode', false);
-            document.querySelector('html').setAttribute('data-bs-theme', 'light');
-        }
-    }
-    // fetch the data, now that page has loaded
-    await utils.loadData();
-    utils.populateListContents();
-    initState();
+    await initState();
 
 };
 
@@ -148,6 +130,6 @@ document.addEventListener('mouseup', () => {
     setMouseUp();
 });
 
-document.querySelector('#dataSelectModal').addEventListener('hidden.bs.modal',()=>{
+document.querySelector('#dataSelectModal').addEventListener('hidden.bs.modal', () => {
     saveSelectedData();
 })

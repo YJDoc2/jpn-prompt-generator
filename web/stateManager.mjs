@@ -1,4 +1,5 @@
-import { getSelectedData } from "./dataHandler.mjs";
+import { loadData, getSelectedData } from "./dataHandler.mjs";
+import { populateListContents } from "./utils.mjs";
 
 let mouseDown = false;
 let selectedVocab = new Set();
@@ -6,7 +7,28 @@ let selectedGrammar = new Set();
 let checkboxes = {};
 
 
-export function initState() {
+export async function initState() {
+
+    document.querySelector('#dark-mode-toggle').checked = false;
+    // set initial mode if set in local storage
+    if (JSON.parse(localStorage.getItem('darkMode'))) {
+        document.querySelector('html').setAttribute('data-bs-theme', 'dark');
+        document.querySelector('#dark-mode-toggle').checked = true;
+    }
+
+    document.querySelector('#dark-mode-toggle').onchange = (e) => {
+        if (e.target.checked) {
+            localStorage.setItem('darkMode', true);
+            document.querySelector('html').setAttribute('data-bs-theme', 'dark');
+        } else {
+            localStorage.setItem('darkMode', false);
+            document.querySelector('html').setAttribute('data-bs-theme', 'light');
+        }
+    }
+
+    await loadData();
+    populateListContents();
+
     let { vocab, grammar } = getSelectedData();
     if (vocab) {
         selectedVocab = new Set(vocab);
