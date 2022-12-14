@@ -1,6 +1,6 @@
 "use strict";
 import * as utils from './utils.mjs'
-import { addUploadedGrammarData, addUploadedVocabData, getSelectionGrammarList, getSelectionWordList, saveSelectedData, validateGrammarData, validateVocabData } from './dataHandler.mjs'
+import { addUploadedGrammarData, addUploadedVocabData, getSelectionGrammarList, getSelectionVocabList, saveSelectedData, validateGrammarData, validateVocabData } from './dataHandler.mjs'
 import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp, clearSelection } from './stateManager.mjs';
 
 let date = new Date();
@@ -61,7 +61,7 @@ function setValues(rand) {
     let grammarList = document.querySelector('#grammarList');
 
 
-    let selectionWordList = getSelectionWordList();
+    let selectionVocabList = getSelectionVocabList();
     let selectionGrammarList = getSelectionGrammarList();
 
     utils.clearList(vocabList);
@@ -69,11 +69,11 @@ function setValues(rand) {
 
     let temp = new Set();
     for (let i = 0; i < vocabCount; i++) {
-        let r = Math.floor((rand() * selectionWordList.length));
-        let word = selectionWordList[r];
+        let r = Math.floor((rand() * selectionVocabList.length));
+        let word = selectionVocabList[r];
 
         // this avoids duplicates in case the available point selection is more than required point count
-        if (temp.has(word) && selectionWordList.length > vocabCount) {
+        if (temp.has(word) && selectionVocabList.length > vocabCount) {
             i--;
             continue;
         }

@@ -3,11 +3,11 @@ import { getId, } from "./utils.mjs";
 
 let dataMap = {};
 
-export function setWordList(newList) {
-    localStorage.setItem('WordList', JSON.stringify(newList));
+export function setVocabList(newList) {
+    localStorage.setItem('VocabList', JSON.stringify(newList));
 }
-export function getWordList() {
-    return JSON.parse(localStorage.getItem('WordList')) || {}
+export function getVocabList() {
+    return JSON.parse(localStorage.getItem('VocabList')) || {}
 }
 
 export function setGrammarList(newList) {
@@ -43,7 +43,7 @@ export function getDataPoint(id) {
     return dataMap[id];
 }
 
-export function getSelectionWordList() {
+export function getSelectionVocabList() {
     let vocab = getSelectedVocab();
     let ret = [];
     for (let id of vocab) {
@@ -81,11 +81,11 @@ export async function loadData() {
 
     let updateNeeded = true;
 
-    let wordList = getWordList();
+    let vocabList = getVocabList();
     let grammarList = getGrammarList();
 
     if (localData) {
-        if (!wordList?.n5Words || !wordList?.n4Words || !grammarList?.genkiGrammar) {
+        if (!vocabList?.n5Words || !vocabList?.n4Words || !grammarList?.genkiGrammar) {
             // yeah, we need to fetch
         } else if (localData.words === updateData.words && localData.grammar === updateData.grammar) {
             updateNeeded = false;
@@ -102,20 +102,20 @@ export async function loadData() {
         setVocabId(n4Words);
         setGrammarId(genkiPoints);
 
-        wordList.n5Words = n5Words;
-        wordList.n4Words = n4Words;
+        vocabList.n5Words = n5Words;
+        vocabList.n4Words = n4Words;
         grammarList.genkiGrammar = genkiPoints;
 
-        setWordList(wordList);
+        setVocabList(vocabList);
         setGrammarList(grammarList);
         setUpdateData(updateData);
     }
 
-    wordList = getWordList();
+    vocabList = getVocabList();
     grammarList = getGrammarList();
 
-    for (let key of Object.keys(wordList)) {
-        let wordSet = wordList[key];
+    for (let key of Object.keys(vocabList)) {
+        let wordSet = vocabList[key];
         addIdPointMapping(wordSet.meta.id, wordSet.data);
     }
 
@@ -139,7 +139,7 @@ function setVocabId(data) {
 }
 
 export function validateVocabData(title, data) {
-    let vdata = getWordList();
+    let vdata = getVocabList();
     for (let v of Object.keys(vdata)) {
         if (vdata[v].title === title) {
             throw `Title '${title}' already exists. Please enter a different title.`
@@ -226,11 +226,11 @@ export function addUploadedVocabData(title, data) {
     setVocabId(vocabSet);
     addIdPointMapping(vocabSet.meta.id, vocabSet.data);
 
-    let vocabs = getWordList();
+    let vocabs = getVocabList();
     let id = getId(title);
     vocabs[id] = vocabSet;
 
-    setWordList(vocabs);
+    setVocabList(vocabs);
     refreshLists();
 
 }

@@ -1,5 +1,5 @@
 "use strict";
-import { setGrammarList, getGrammarList, getWordList, setWordList, setUpdateData, getUpdateData, addIdPointMapping, getDataPoint } from "./dataHandler.mjs";
+import { setGrammarList, getGrammarList, getVocabList, setVocabList, setUpdateData, getUpdateData, addIdPointMapping, getDataPoint } from "./dataHandler.mjs";
 import { addIdCheckboxMapping, addDragSelectBehavior, selectionEvent } from "./stateManager.mjs";
 
 
@@ -123,7 +123,7 @@ function getAccordionItem(header, contents, mainId) {
 
 export function populateListContents() {
 
-    let words = getWordList();
+    let words = getVocabList();
     let grammars = getGrammarList();
 
     let vocabPane = document.querySelector('#vocabPane');
