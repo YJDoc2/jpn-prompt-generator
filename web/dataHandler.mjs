@@ -99,8 +99,8 @@ export async function loadData() {
         let genkiPoints = await (await fetch('./data/genkiGrammarPoints.json')).json();
 
 
-        n5Words.id = getId('vocab', n5Words.title);
-        n4Words.id = getId('vocab', n4Words.title);
+        n5Words.meta = { id: getId('vocab', n5Words.title) };
+        n4Words.meta = { id: getId('vocab', n4Words.title) };
         setGrammarId(genkiPoints);
 
         wordList.n5Words = n5Words;
@@ -117,13 +117,13 @@ export async function loadData() {
 
     for (let key of Object.keys(wordList)) {
         let wordSet = wordList[key];
-        addIdPointMapping(wordSet.id, wordSet.data);
+        addIdPointMapping(wordSet.meta.id, wordSet.data);
     }
 
     for (let key of Object.keys(grammarList)) {
         let grammar = grammarList[key];
         for (let chapter of grammar.data) {
-            addIdPointMapping(chapter.id, chapter.points);
+            addIdPointMapping(chapter.meta.id, chapter.points);
         }
     }
 }
@@ -131,7 +131,7 @@ export async function loadData() {
 function setGrammarId(data) {
     let title = data.title;
     for (let point of data.data) {
-        point.id = getId('grammar', title, point.title);
+        point.meta = { id: getId('grammar', title, point.title) };
     }
 }
 

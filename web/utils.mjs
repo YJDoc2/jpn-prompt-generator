@@ -53,7 +53,7 @@ function getCheckboxUl(list) {
         let check = document.createElement('input');
         check.type = 'checkbox';
         check.classList = 'form-check-input';
-        check.id = point.id;
+        check.id = point.meta.id;
 
         addIdCheckboxMapping(check.id, check);
 
