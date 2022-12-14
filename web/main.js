@@ -1,6 +1,6 @@
 "use strict";
 import * as utils from './utils.mjs'
-import { addUploadedVocabData, getSelectionGrammarList, getSelectionWordList, saveSelectedData, validateGrammarData, validateVocabData } from './dataHandler.mjs'
+import { addUploadedGrammarData, addUploadedVocabData, getSelectionGrammarList, getSelectionWordList, saveSelectedData, validateGrammarData, validateVocabData } from './dataHandler.mjs'
 import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp, clearSelection } from './stateManager.mjs';
 
 let date = new Date();
@@ -101,7 +101,7 @@ function setValues(rand) {
         temp.add(point);
         let li = document.createElement('li');
         li.setAttribute('class', 'list-group-item list');
-        li.appendChild(document.createTextNode(point.title));
+        li.appendChild(document.createTextNode(point.text));
         grammarList.appendChild(li);
     }
 }
@@ -167,10 +167,10 @@ document.querySelector('#btnUpload').addEventListener('click', async () => {
     try {
         if (type === 'vocab') {
             validateVocabData(title, fileData);
-            addUploadedVocabData(fileData);
+            addUploadedVocabData(title, fileData);
         } else {
             validateGrammarData(title, fileData);
-            addUploadedVocabData(fileData);
+            addUploadedGrammarData(title, fileData);
         }
     } catch (e) {
         utils.setDataFileError(e);

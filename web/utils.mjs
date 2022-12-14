@@ -152,7 +152,7 @@ export function populateListContents() {
 }
 
 export function getId(...strings) {
-    return strings.map((s) => s.toLowerCase().replaceAll(' ', '-').replaceAll('_', '-')).join('_')
+    return strings.map((s) => s.replaceAll(' ', '-').replaceAll('_', '-')).join('_')
 }
 
 export function setDataFileError(err) {

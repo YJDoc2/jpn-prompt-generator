@@ -1,4 +1,4 @@
-import { getSelectedGrammar, getSelectedVocab } from "./stateManager.mjs";
+import { getSelectedGrammar, getSelectedVocab, refreshLists } from "./stateManager.mjs";
 import { getId, } from "./utils.mjs";
 
 let dataMap = {};
@@ -98,9 +98,8 @@ export async function loadData() {
         let n4Words = await (await fetch('./data/n4Filtered.json')).json();
         let genkiPoints = await (await fetch('./data/genkiGrammarPoints.json')).json();
 
-
-        n5Words.meta = { id: getId('vocab', n5Words.title) };
-        n4Words.meta = { id: getId('vocab', n4Words.title) };
+        setVocabId(n5Words);
+        setVocabId(n4Words);
         setGrammarId(genkiPoints);
 
         wordList.n5Words = n5Words;
@@ -130,9 +129,13 @@ export async function loadData() {
 
 function setGrammarId(data) {
     let title = data.title;
-    for (let point of data.data) {
-        point.meta = { id: getId('grammar', title, point.title) };
+    for (let chapter of data.data) {
+        chapter.meta = { id: getId('grammar', title, chapter.title) };
     }
+}
+
+function setVocabId(data) {
+    data.meta = { id: getId('vocab', data.title) };
 }
 
 export function validateVocabData(title, data) {
@@ -200,6 +203,71 @@ export function validateGrammarData(title, data) {
     }
 }
 
-export function addUploadedVocabData(data) { }
+export function addUploadedVocabData(title, data) {
+    let vocabSet = {};
+    vocabSet.title = title;
+    let words = [];
+    for (let p of data) {
+        let w = {};
+        w.text = p.text;
+        if (p.jishoLink) {
+            w.jishoLink = p.jishoLink;
+        } else {
+            w.jishoLink = `https://jisho.org/search/${w.text}`;
+        }
+        if (p.attribution) {
+            w.attribution = p.attribution;
+        } else {
+            w.attribution = {};
+        }
+        words.push(w);
+    }
+    vocabSet.data = words;
+    setVocabId(vocabSet);
+    addIdPointMapping(vocabSet.meta.id, vocabSet.data);
 
-export function addUploadedGrammarData(data) { }
+    let vocabs = getWordList();
+    let id = getId(title);
+    vocabs[id] = vocabSet;
+
+    setWordList(vocabs);
+    refreshLists();
+
+}
+
+export function addUploadedGrammarData(title, data) {
+    let grammarSet = {};
+    grammarSet.title = title;
+    let chapters = [];
+    for (let c of data) {
+        let chapter = {};
+        chapter.title = c.title;
+        let points = [];
+        for (let p of c.points) {
+            if (typeof p === 'string') {
+                points.push({
+                    text: p,
+                    links: []
+                });
+            } else {
+                points.push({
+                    text: p.text,
+                    links: p.links || []
+                })
+            }
+        }
+        chapter.points = points;
+        chapters.push(chapter);
+    }
+    grammarSet.data = chapters;
+    setGrammarId(grammarSet);
+    for (let chapter of grammarSet.data) {
+        addIdPointMapping(chapter.meta.id, chapter.points);
+    }
+
+    let grammars = getGrammarList();
+    let id = getId(title);
+    grammars[id] = grammarSet;
+    setGrammarList(grammars);
+    refreshLists();
+}

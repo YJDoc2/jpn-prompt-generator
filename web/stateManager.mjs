@@ -6,27 +6,7 @@ let selectedVocab = new Set();
 let selectedGrammar = new Set();
 let checkboxes = {};
 
-
-export async function initState() {
-
-    document.querySelector('#dark-mode-toggle').checked = false;
-    // set initial mode if set in local storage
-    if (JSON.parse(localStorage.getItem('darkMode'))) {
-        document.querySelector('html').setAttribute('data-bs-theme', 'dark');
-        document.querySelector('#dark-mode-toggle').checked = true;
-    }
-
-    document.querySelector('#dark-mode-toggle').onchange = (e) => {
-        if (e.target.checked) {
-            localStorage.setItem('darkMode', true);
-            document.querySelector('html').setAttribute('data-bs-theme', 'dark');
-        } else {
-            localStorage.setItem('darkMode', false);
-            document.querySelector('html').setAttribute('data-bs-theme', 'light');
-        }
-    }
-
-    await loadData();
+export function refreshLists() {
     populateListContents();
 
     let { vocab, grammar } = getSelectedData();
@@ -48,6 +28,29 @@ export async function initState() {
             }
         }
     }
+}
+
+export async function initState() {
+
+    document.querySelector('#dark-mode-toggle').checked = false;
+    // set initial mode if set in local storage
+    if (JSON.parse(localStorage.getItem('darkMode'))) {
+        document.querySelector('html').setAttribute('data-bs-theme', 'dark');
+        document.querySelector('#dark-mode-toggle').checked = true;
+    }
+
+    document.querySelector('#dark-mode-toggle').onchange = (e) => {
+        if (e.target.checked) {
+            localStorage.setItem('darkMode', true);
+            document.querySelector('html').setAttribute('data-bs-theme', 'dark');
+        } else {
+            localStorage.setItem('darkMode', false);
+            document.querySelector('html').setAttribute('data-bs-theme', 'light');
+        }
+    }
+
+    await loadData();
+    refreshLists();
 }
 
 export function setMouseDown() {
