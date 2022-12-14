@@ -47,3 +47,41 @@ key in localStorage.
   ]
 }
 ```
+
+## Scheme for data upload ( Adding custom sets )
+
+This specifies the data scheme of the json file that needs to be uploaded for
+custom sets.
+
+### Vocab set
+
+```json
+[
+  {
+    "text": "string", // The text to be displayed, i.e. the actual vocab
+    "jishoLink": "string", // Optional , link for jisho of that word, if not present, default will be https://jisho.org/search/`word`
+    "attribution": "Object" // attribution information from jisho, not yet used
+  }
+]
+```
+
+### Grammar set
+
+```json
+[
+  {
+    "title": "string", // the title to be shown in UI for this subset
+    "points": [
+      { // if the point is of string type, it will be considered as the text, and the links section will be empty array
+        "text": "string", //  the text to be shown, i.e. the  actual grammar point
+        "links": [ // optional
+          {
+            "title": "string", // title of the link
+            "url": "string" // href of the link
+          }
+        ]
+      }
+    ]
+  }
+]
+```

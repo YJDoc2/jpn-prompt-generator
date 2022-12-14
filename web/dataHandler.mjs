@@ -136,11 +136,68 @@ function setGrammarId(data) {
 }
 
 export function validateVocabData(title, data) {
-
+    let vdata = getWordList();
+    for (let v of Object.keys(vdata)) {
+        if (vdata[v].title === title) {
+            throw `Title '${title}' already exists. Please enter a different title.`
+        }
+    }
+    if (!Array.isArray(data)) {
+        throw 'Data must be an array, as per the data scheme.'
+    }
+    for (let word of data) {
+        if (!word.text || typeof word.text !== 'string') {
+            throw `Attribute 'text' must be present and a string : Error in word \n${JSON.stringify(word, null, 2)}`;
+        }
+    }
 }
 
 export function validateGrammarData(title, data) {
-
+    let gdata = getGrammarList();
+    for (let g of Object.keys(gdata)) {
+        if (gdata[g].title === title) {
+            throw `Title '${title}' already exists. Please enter a different title.`
+        }
+    }
+    if (!Array.isArray(data)) {
+        throw 'Data must be an array, as per the data scheme.'
+    }
+    for (let chapter of data) {
+        if (!chapter.title || typeof chapter.title !== 'string') {
+            throw `Attribute 'title' must be present and a string : Error in chapter \n${JSON.stringify(chapter, null, 2)}`;
+        }
+        if (!chapter.points || !Array.isArray(chapter.points)) {
+            throw `Attribute 'points' must be present and an array : Error in chapter \n${JSON.stringify(chapter, null, 2)}`;
+        }
+        if (chapter.points.length < 1) {
+            throw `Attribute 'points' array is empty : Error in chapter \n${JSON.stringify(chapter, null, 2)}`;
+        }
+        for (let point of chapter.points) {
+            if (typeof point === 'string') {
+                // a point can be just a string
+                continue;
+            }
+            if (!point.text || typeof point.text !== 'string') {
+                throw `Attribute 'text' must be present and a string : Error in point \n${JSON.stringify(point, null, 2)}`;
+            }
+            if (point.links) {
+                if (!Array.isArray(point.links)) {
+                    throw `Attribute 'link', if present, must an array : Error in point \n${JSON.stringify(point, null, 2)}`;
+                }
+                if (point.links.length < 1) {
+                    throw `Attribute 'link' array is empty : Error in point \n${JSON.stringify(point, null, 2)}`;
+                }
+                for (let link of point.links) {
+                    if (!link.title || typeof link.title !== 'string') {
+                        throw `Attribute 'title' must be present in link object, and must a string : Error in point \n${JSON.stringify(point, null, 2)}`;
+                    }
+                    if (!link.url || typeof link.url !== 'string') {
+                        throw `Attribute 'url' must be present in link object, and must a string : Error in point \n${JSON.stringify(point, null, 2)}`;
+                    }
+                }
+            }
+        }
+    }
 }
 
 export function addUploadedVocabData(data) { }

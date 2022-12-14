@@ -144,7 +144,7 @@ export function populateListContents() {
     accordionDiv.id = 'grammarAccordion';
     for (let key of Object.keys(grammars)) {
         let chapters = grammars[key].data;
-        let item = getAccordionItem(key, chapters, 'grammarAccordion');
+        let item = getAccordionItem(grammars[key].title, chapters, 'grammarAccordion');
         accordionDiv.appendChild(item);
     }
     _div.appendChild(accordionDiv);

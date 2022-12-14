@@ -1,6 +1,6 @@
 "use strict";
 import * as utils from './utils.mjs'
-import { addUploadedVocabData, getSelectionGrammarList, getSelectionWordList, saveSelectedData } from './dataHandler.mjs'
+import { addUploadedVocabData, getSelectionGrammarList, getSelectionWordList, saveSelectedData, validateGrammarData, validateVocabData } from './dataHandler.mjs'
 import { getSelectedGrammar, getSelectedVocab, initState, setMouseDown, setMouseUp, clearSelection } from './stateManager.mjs';
 
 let date = new Date();
@@ -141,8 +141,8 @@ document.querySelector('#btnClearSelection').addEventListener('click', () => {
 document.querySelector('#btnUpload').addEventListener('click', async () => {
     let fileInput = document.querySelector('#dataFileInput');
     let file = fileInput.files[0];
-    let dataTitle = document.querySelector('#dataNameInput').value.trim();
-    if (dataTitle.length === 0) {
+    let title = document.querySelector('#dataNameInput').value.trim();
+    if (title.length === 0) {
         utils.setDataFileError('No title Set');
         return;
     }
