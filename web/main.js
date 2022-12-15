@@ -80,7 +80,7 @@ function setValues(rand) {
         temp.add(word);
         let atag = document.createElement('a');
         atag.textContent = word.text;
-        atag.href = word.jishoLink;
+        atag.href = word.jishoLink ? word.jishoLink : `https://jisho.org/search/${word.text}`;
         atag.setAttribute('rel', 'noreferrer noopener');
         atag.setAttribute('target', '_blank');
         atag.setAttribute('class', 'list-group-item list');

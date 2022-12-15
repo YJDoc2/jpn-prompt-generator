@@ -1,11 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 
-const jishoBaseLink = 'https://jisho.org/search/';
-
-if (!process.argv[1]) {
+if (!process.argv[2]) {
     console.error('Please give data directory path...');
-    console.error('Syntax : node index /data/dir/path');
+    console.error(`Syntax : node ${process.argv[1]} /data/dir/path`);
     process.exit(1);
 }
 
@@ -44,7 +42,6 @@ let n5Filtered = [];
 for (let word of n5.data) {
     n5Filtered.push({
         text: word.slug,
-        jishoLink: `${jishoBaseLink}${word.slug}`,
         attribution: word.attribution
     });
 }
@@ -57,7 +54,6 @@ let n4Filtered = [];
 for (let word of n4.data) {
     n4Filtered.push({
         text: word.slug,
-        jishoLink: `${jishoBaseLink}${word.slug}`,
         attribution: word.attribution
     });
 }

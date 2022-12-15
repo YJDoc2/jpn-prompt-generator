@@ -152,6 +152,9 @@ export function validateVocabData(title, data) {
         if (!word.text || typeof word.text !== 'string') {
             throw `Attribute 'text' must be present and a string : Error in word \n${JSON.stringify(word, null, 2)}`;
         }
+        if(word.jishoLink && typeof word.jishoLink !== 'string'){
+            throw `Attribute 'jishoLink', if present, must be of type string : Error in word \n${JSON.stringify(word, null, 2)}`;
+        }
     }
 }
 
@@ -212,8 +215,6 @@ export function addUploadedVocabData(title, data) {
         w.text = p.text;
         if (p.jishoLink) {
             w.jishoLink = p.jishoLink;
-        } else {
-            w.jishoLink = `https://jisho.org/search/${w.text}`;
         }
         if (p.attribution) {
             w.attribution = p.attribution;
