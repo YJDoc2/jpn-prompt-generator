@@ -10,12 +10,9 @@ let dailySeed = new Date(date.getFullYear(), date.getMonth(), date.getDay()).get
 // document element to show error messages
 const errorPlaceholder = document.getElementById('errorPlaceholder');
 
-
-window.onload = async () => {
-
+window.addEventListener('load', async () => {
     await initState();
-
-};
+});
 
 // validates carious input values
 function validate() {

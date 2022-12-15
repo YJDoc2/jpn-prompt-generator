@@ -7,10 +7,12 @@ const ignoreGrammarKeys = ['genkiGrammar'];
 
 const ignoreKeys = [...ignoreVocabKeys, ...ignoreGrammarKeys];
 
-window.onload = () => {
+
+
+window.addEventListener('load', () => {
     initDarkModeState();
     refreshLists();
-}
+});
 
 
 function cleanVocabSetForDownload(set) {

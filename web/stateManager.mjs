@@ -31,19 +31,13 @@ export function refreshLists() {
 }
 
 export function initDarkModeState() {
-    // set initial mode if set in local storage
-    if (JSON.parse(localStorage.getItem('darkMode'))) {
-        document.querySelector('html').setAttribute('data-bs-theme', 'dark');
-        document.querySelector('#dark-mode-toggle').checked = true;
-    }
-
     document.querySelector('#dark-mode-toggle').onchange = (e) => {
         if (e.target.checked) {
-            localStorage.setItem('darkMode', true);
-            document.querySelector('html').setAttribute('data-bs-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
         } else {
-            localStorage.setItem('darkMode', false);
-            document.querySelector('html').setAttribute('data-bs-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            document.documentElement.setAttribute('data-bs-theme', 'light');
         }
     }
 }

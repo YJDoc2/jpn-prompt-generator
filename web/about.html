@@ -9,6 +9,11 @@
     <meta http-equiv='expires' content='0'>
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./dist/css/icons.css">
+    <style>
+        p {
+            font-size: 1.2rem;
+        }
+    </style>
     <title>JPN Prompt generator</title>
 </head>
 
@@ -26,10 +31,10 @@
                         <a class="nav-link" href="./index.html" target="_self">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./about.html" target="_self">About</a>
+                        <a class="nav-link active" href="#" target="_self">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" target="_self">Settings</a>
+                        <a class="nav-link" href="./settings.html" target="_self">Settings</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/YJDoc2/jpn-prompt-generator"
@@ -46,26 +51,45 @@
     <br />
     <br />
     <div class="container">
-        <h1>Settings</h1>
+        <h1>About</h1>
         <hr />
-        <p> Here You can download the JSON files for your sets and delete custom sets.
-            <strong>NOTE</strong> that the built-in decks cannot be deleted from here.
-        </p>
-        <hr />
-        <br />
-        <br />
         <div class="container">
-            <h3>Vocab Sets</h3>
-            <ul id="vocabSetUl" class="list-group mb-2">
-            </ul>
-            <h3>Grammar Sets</h3>
-            <ul id="grammarSetUl" class="list-group"></ul>
+            <p>This is a short overview of this project. For more details, check the <a
+                    href="https://github.com/YJDoc2/jpn-prompt-generator" target="_blank"
+                    rel="noopener noreferrer">GitHub
+                    repo</a> of this project.</p>
+            <div>
+                <p>
+                    This is a small project intended to help japanese learners. The main aim of this is to get prompts
+                    to practice grammar and vocab for making sentences, so that one can practice more "output"-ing
+                    japanese apart from the exercise that one might be doing from text/work books.
+                </p>
+                <p>
+                    The original concept is to get some (5) words and some (3) grammar points, and try to write
+                    sentences that use them. That said, you are free to use these for something else, such as
+                    on-the-spot speaking exercise! You can select upto 10 of vocab and grammar points.
+                </p>
+                <p>
+                    You can click <strong>Get Random Selection</strong> to get randomly selected vocab and grammar
+                    points, or you can try <strong>Get Daily Selection</strong> to get random selections which change
+                    each day, similar to something like <em>Wordle</em>. That way you can do this in groups and check
+                    out each other's works. Note that by <em>daily</em> I mean each day in timezone from where you're
+                    viewing the site. I'm not inclined to work out to logic to change it uniformly across timezones ;)
+                </p>
+                <p><strong>NOTE</strong>, the built in vocab and grammar sets are based on what I'm currently
+                    studying, or have been added by request. If you want more / different sets, you can add custom sets
+                    (see how to on homepage).
+                    If you think that the set can help many more, and is based on somewhat a "standard" resource of
+                    learning, feel free to open an issue on the <a href="https://github.com/YJDoc2/jpn-prompt-generator"
+                        target="_blank" rel="noopener noreferrer">GitHub repo</a> :) Depending on the resource, I might
+                    add that set as one of the built in sets.
+                </p>
+            </div>
         </div>
         <footer class="footer my-2">
             <div class="container">copyright 2022 YJDoc2</div>
         </footer>
     </div>
-
     <script>
         let theme = localStorage.getItem('theme');
         if (!theme) {
@@ -77,7 +101,6 @@
         document.documentElement.setAttribute('data-bs-theme', theme);
         document.querySelector('#dark-mode-toggle').checked = theme === 'dark';
     </script>
-    <script src="./settings.js" type="module"></script>
     <script src="dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
