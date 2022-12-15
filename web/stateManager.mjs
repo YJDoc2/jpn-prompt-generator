@@ -30,9 +30,7 @@ export function refreshLists() {
     }
 }
 
-export async function initState() {
-
-    document.querySelector('#dark-mode-toggle').checked = false;
+export function initDarkModeState() {
     // set initial mode if set in local storage
     if (JSON.parse(localStorage.getItem('darkMode'))) {
         document.querySelector('html').setAttribute('data-bs-theme', 'dark');
@@ -48,7 +46,10 @@ export async function initState() {
             document.querySelector('html').setAttribute('data-bs-theme', 'light');
         }
     }
+}
 
+export async function initState() {
+    initDarkModeState();
     await loadData();
     refreshLists();
 }
