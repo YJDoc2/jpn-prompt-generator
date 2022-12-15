@@ -228,7 +228,7 @@ export function addUploadedVocabData(title, data) {
     addIdPointMapping(vocabSet.meta.id, vocabSet.data);
 
     let vocabs = getVocabList();
-    let id = getId(title);
+    let id = getId('vocab',title);
     vocabs[id] = vocabSet;
 
     setVocabList(vocabs);
@@ -267,7 +267,7 @@ export function addUploadedGrammarData(title, data) {
     }
 
     let grammars = getGrammarList();
-    let id = getId(title);
+    let id = getId('grammar',title);
     grammars[id] = grammarSet;
     setGrammarList(grammars);
     refreshLists();
