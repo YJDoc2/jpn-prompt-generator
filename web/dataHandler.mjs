@@ -24,9 +24,15 @@ export function getUpdateData() {
     return JSON.parse(localStorage.getItem('updateData')) || {};
 }
 
-export function saveSelectedData() {
-    let vocab = getSelectedVocab();
-    let grammar = getSelectedGrammar();
+export function saveSelectedData(data) {
+    let vocab = null;
+    let grammar = null;
+    if (!data) {
+        vocab = getSelectedVocab();
+        grammar = getSelectedGrammar();
+    } else {
+        ({ vocab, grammar } = data);
+    }
     localStorage.setItem('selectedData', JSON.stringify({ vocab, grammar }));
 }
 
@@ -152,7 +158,7 @@ export function validateVocabData(title, data) {
         if (!word.text || typeof word.text !== 'string') {
             throw `Attribute 'text' must be present and a string : Error in word \n${JSON.stringify(word, null, 2)}`;
         }
-        if(word.jishoLink && typeof word.jishoLink !== 'string'){
+        if (word.jishoLink && typeof word.jishoLink !== 'string') {
             throw `Attribute 'jishoLink', if present, must be of type string : Error in word \n${JSON.stringify(word, null, 2)}`;
         }
     }
@@ -228,7 +234,7 @@ export function addUploadedVocabData(title, data) {
     addIdPointMapping(vocabSet.meta.id, vocabSet.data);
 
     let vocabs = getVocabList();
-    let id = getId('vocab',title);
+    let id = getId('vocab', title);
     vocabs[id] = vocabSet;
 
     setVocabList(vocabs);
@@ -267,7 +273,7 @@ export function addUploadedGrammarData(title, data) {
     }
 
     let grammars = getGrammarList();
-    let id = getId('grammar',title);
+    let id = getId('grammar', title);
     grammars[id] = grammarSet;
     setGrammarList(grammars);
     refreshLists();
