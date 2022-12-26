@@ -41,21 +41,18 @@ export function getSelectedData() {
 }
 
 
-export function addIdPointMapping(id, data) {
-    dataMap[id] = data
-}
-
-export function getDataPoint(id) {
-    return dataMap[id];
+export function addIdPointMapping(id, data, source) {
+    dataMap[id] = { data, source };
 }
 
 export function getSelectionVocabList() {
     let vocab = getSelectedVocab();
     let ret = [];
     for (let id of vocab) {
-        let points = dataMap[id];
-        if (points) {
-            ret.push(...points);
+        let { data, source } = dataMap[id];
+        if (data) {
+            data.forEach((w) => w.meta = { source });
+            ret.push(...data);
         }
     }
     return ret;
@@ -66,8 +63,9 @@ export function getSelectionGrammarList() {
     let grammar = getSelectedGrammar();
     let selected = [];
     for (let id of grammar) {
-        let data = dataMap[id];
+        let { data, source } = dataMap[id];
         if (data) {
+            data.forEach((p) => p.meta = { source });
             selected.push(...data);
         }
     }
@@ -122,13 +120,13 @@ export async function loadData() {
 
     for (let key of Object.keys(vocabList)) {
         let wordSet = vocabList[key];
-        addIdPointMapping(wordSet.meta.id, wordSet.data);
+        addIdPointMapping(wordSet.meta.id, wordSet.data, wordSet.title);
     }
 
     for (let key of Object.keys(grammarList)) {
         let grammar = grammarList[key];
         for (let chapter of grammar.data) {
-            addIdPointMapping(chapter.meta.id, chapter.points);
+            addIdPointMapping(chapter.meta.id, chapter.points, `${grammar.title} > ${chapter.title}`);
         }
     }
 }
@@ -231,13 +229,16 @@ export function addUploadedVocabData(title, data) {
     }
     vocabSet.data = words;
     setVocabId(vocabSet);
-    addIdPointMapping(vocabSet.meta.id, vocabSet.data);
 
     let vocabs = getVocabList();
     let id = getId('vocab', title);
     vocabs[id] = vocabSet;
 
     setVocabList(vocabs);
+
+    vocabSet.meta
+    addIdPointMapping(vocabSet.meta.id, vocabSet.data, title);
+
     refreshLists();
 
 }
@@ -269,7 +270,7 @@ export function addUploadedGrammarData(title, data) {
     grammarSet.data = chapters;
     setGrammarId(grammarSet);
     for (let chapter of grammarSet.data) {
-        addIdPointMapping(chapter.meta.id, chapter.points);
+        addIdPointMapping(chapter.meta.id, chapter.points, `${title} > ${chapter.title}`);
     }
 
     let grammars = getGrammarList();

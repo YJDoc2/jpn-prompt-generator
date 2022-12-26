@@ -61,6 +61,9 @@ function setValues(rand) {
     let selectionVocabList = getSelectionVocabList();
     let selectionGrammarList = getSelectionGrammarList();
 
+    let infoDiv = document.querySelector('#infoPlaceholder');
+    utils.clearList(infoDiv);
+
     utils.clearList(vocabList);
     utils.clearList(grammarList);
 
@@ -74,14 +77,61 @@ function setValues(rand) {
             i--;
             continue;
         }
+
         temp.add(word);
+
+        let infoBtn = document.createElement('button');
+        infoBtn.classList = "btn col col-2 bi bi-info-circle";
+        infoBtn.style = 'font-size: 1.2rem; color: cornflowerblue;';
+        infoBtn.addEventListener('click', () => {
+            utils.clearList(infoDiv);
+
+            // the 'Word : word' part
+            let span = document.createElement('span');
+            span.textContent = 'Word : ';
+            span.classList = 'list-group-item';
+
+            // actual word, linked to Jisho
+            let a = document.createElement('a');
+
+            a.textContent = word.text;
+            a.href = word.jishoLink ? word.jishoLink : `https://jisho.org/search/${word.text}`;
+            a.setAttribute('rel', 'noreferrer noopener');
+            a.setAttribute('target', '_blank');
+            span.appendChild(a);
+
+            infoDiv.appendChild(span);
+
+            // the set from which it came from
+            span = document.createElement('span');
+            span.classList = 'list-group-item';
+            span.textContent = `From : ${word.meta.source}`;
+
+            infoDiv.appendChild(span);
+        });
+
+        let rowDiv = document.createElement('div');
+        rowDiv.classList = 'row';
+
+        let li = document.createElement('li');
+        li.classList = 'list-group-item';
+
         let atag = document.createElement('a');
+
         atag.textContent = word.text;
         atag.href = word.jishoLink ? word.jishoLink : `https://jisho.org/search/${word.text}`;
         atag.setAttribute('rel', 'noreferrer noopener');
         atag.setAttribute('target', '_blank');
-        atag.setAttribute('class', 'list-group-item list');
-        vocabList.appendChild(atag);
+
+        // no underscore, color according to parent/theme
+        atag.style = 'text-decoration:none; color:inherit;'
+        atag.classList = 'col col-10';
+
+        rowDiv.appendChild(atag);
+        rowDiv.appendChild(infoBtn);
+        li.appendChild(rowDiv);
+
+        vocabList.appendChild(li);
     }
 
     temp = new Set();
@@ -96,9 +146,61 @@ function setValues(rand) {
         }
 
         temp.add(point);
+
+        let infoBtn = document.createElement('button');
+        infoBtn.classList = "btn col col-2 bi bi-info-circle";
+        infoBtn.style = 'font-size: 1.2rem; color: cornflowerblue;';
+
+        infoBtn.addEventListener('click', () => {
+            utils.clearList(infoDiv);
+
+            // the 'Point : point' part
+            let span = document.createElement('span');
+            span.classList = 'list-group-item';
+            span.textContent = `Point : ${point.text}`;
+            infoDiv.appendChild(span);
+
+            // the set from which it came
+            span = document.createElement('span');
+            span.classList = 'list-group-item';
+            span.textContent = `From : ${point.meta.source}`;
+            infoDiv.appendChild(span);
+
+            if (point.links && point.links.length > 0) {
+                let span = document.createElement('span');
+                span.classList = 'list-group-item';
+                span.appendChild(document.createTextNode('Links : '));
+                for (let link of point.links) {
+                    let a = document.createElement('a');
+                    a.href = link.url;
+                    a.textContent = link.title;
+                    a.classList = 'mx-2';
+                    a.setAttribute('rel', 'noreferrer noopener');
+                    a.setAttribute('target', '_blank');
+                    span.appendChild(a);
+                }
+                infoDiv.appendChild(span);
+            }
+
+
+        })
+
+        let rowDiv = document.createElement('div');
+        rowDiv.classList = 'row';
+
+        let span = document.createElement('span');
+        span.textContent = point.text;
+        span.classList = 'col col-10';
+
+
+        rowDiv.appendChild(span);
+        rowDiv.appendChild(infoBtn);
+
         let li = document.createElement('li');
-        li.setAttribute('class', 'list-group-item list');
-        li.appendChild(document.createTextNode(point.text));
+        li.classList = 'list-group-item'
+
+        li.appendChild(rowDiv);
+
         grammarList.appendChild(li);
     }
 }

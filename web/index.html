@@ -8,6 +8,7 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/icons.css">
     <style>
         input[type=number] {
             appearance: textfield;
@@ -22,6 +23,18 @@
         }
 
         .errorbox:empty {
+            display: none;
+        }
+
+        .infobox {
+            border-color: blue;
+            border-width: 2px;
+            border-radius: 0.5rem;
+            border-style: solid;
+            padding: 1rem;
+        }
+
+        .infobox:empty {
             display: none;
         }
 
@@ -128,6 +141,7 @@
                 </ul>
             </div>
         </div>
+        <div class="container infobox mt-2" id="infoPlaceholder"></div>
     </div>
 
     <br />
@@ -145,18 +159,20 @@
         <h3>How to use this</h3>
         <div>
             <p>
-                Enter the number of vocab words and grammar points you want in the input. Currently you can enter at
-                most 10 for each. After that, click on 'Select Vocab and Grammar', which will open the selection modal.
-                Here, select at least one vocab list from the 'Vocab' tab. Next, switch to 'Grammar' tab and here click
-                on any of the list to expand it. You need to select at least one sub-list / chapter in total. You can
-                select that from any list, as well as select multiple across different lists. You can click and drag to
-                select multiple instead of individually clicking each checkbox. Click on 'Close' or anywhere outside the
-                modal to save the choices. There is also a 'Clear All' button which will clear all selected points from
-                <strong>BOTH</strong> vocab and grammar.
+                Enter the number of vocab words and grammar points you want in the 'Words' and 'Grammar Points' input
+                boxes. Currently you can select between 1 and 10. After that, click on 'Select Vocab and Grammar',
+                which will open the selection modal. Here, select at least one vocab list from the 'Vocab' tab. Next,
+                switch to 'Grammar' tab and here click on any of the list to expand it. You need to select at least one
+                sub-list / chapter in total. You can select that from any list, as well as select multiple across
+                different lists. You can click and drag to select multiple instead of individually clicking each
+                checkbox. Click on 'Close' or anywhere outside the modal to save the choices. There is also a 'Clear
+                All' button which will clear all selected points from <strong>BOTH</strong> vocab and grammar.
             </p>
-            <p>After that you can click either <strong>Get Random Selection</strong> or <strong>Get Daily
+            <p>After that you can click either <strong>Get Daily Selection</strong> or <strong>Get Random
                     Selection</strong> as per what you want.</p>
-            <p>You can click on the words to open their Jisho page in new tab.</p>
+            <p>You can click on the words to open their Jisho page in new tab. The 'i' icon after words will show to
+                which vocab set it belongs to. For grammar point, it will show the set and sub-point/ chapter it came
+                from, as well as show the links for that point if present.</p>
         </div>
         <h3>Adding Custom sets</h3>
         <div>
@@ -165,7 +181,7 @@
                 specific
                 format. The format can be found <a
                     href="https://github.com/YJDoc2/jpn-prompt-generator/blob/main/Datascheme.md"
-                    rel="noopener noreferrer" target="_blank">HERE</a>. To upload the data click on the 'Add Custom Set'
+                    rel="noopener noreferrer" target="_blank">Here</a>. To upload the data click on the 'Add Custom Set'
                 button, which will open the
                 upload modal. Here, select the type, either 'Vocab Set' or 'Grammar Set'. Enter a title for the new set,
                 which will be used in the selection modal after successful upload to indicate this set.
@@ -192,7 +208,7 @@
                         Channel</a> and <a href="https://www.tokiniandy.com/" target="_blank"
                         rel="noopener noreferrer">Website</a> ! </li>
                 <li><strong>SRS Systems</strong> : Personally I use <a href="https://jpdb.io/" target="_blank"
-                        rel="noopener noreferrer">JPDB io</a>, <a href="https://www.wanikani.com/" target="_blank"
+                        rel="noopener noreferrer">JPDB io</a> ; <a href="https://www.wanikani.com/" target="_blank"
                         rel="noopener noreferrer">WaniKani</a> is also another famous one.</li>
                 <li><strong>Grammar check</strong> : You can use <a href="https://bunpo-check.com/" target="_blank"
                         rel="noopener noreferrer">bunpro-check</a> and <a href="https://sapling.ai/lang/japanese"

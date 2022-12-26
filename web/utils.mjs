@@ -1,5 +1,5 @@
 "use strict";
-import { setGrammarList, getGrammarList, getVocabList, setVocabList, setUpdateData, getUpdateData, addIdPointMapping, getDataPoint } from "./dataHandler.mjs";
+import { getGrammarList, getVocabList } from "./dataHandler.mjs";
 import { addIdCheckboxMapping, addDragSelectBehavior, selectionEvent } from "./stateManager.mjs";
 
 

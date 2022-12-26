@@ -27,3 +27,7 @@
 .bi-file-earmark-arrow-down::before {
     content: "\f356";
 }
+
+.bi-info-circle::before {
+    content: "\f431";
+}
