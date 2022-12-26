@@ -7,14 +7,16 @@ Site available at [https://yjdoc2.github.io/jpn-prompt-generator/](https://yjdoc
 
 # What is this
 
-While trying to learn Japanese, I felt that the amount of practice for "output"-ing, i.e. writing/speaking or doing anything that will make me think in Japanese by just doing test/work book exercises. I wanted something that will give me random prompts which I'll have to use and make sentences out of, so I'll get more practice. Thus, This!
+While trying to learn Japanese, I felt the need for more practice of "output"-ing, i.e. writing/speaking or doing anything that will make me think in Japanese than just doing test/work book exercises. I wanted something that will give me random prompts which I'll have to use and make sentences out of, so I'll get more practice. Thus, This!
 
 This currently has N5 and N4 JLPT level vocabulary collected from Jisho, and Genki 1 Grammar points, which you can
 
 - Get 1-10 random selection from vocab and grammar, as per number decided by you.
 - Click on the words to open Jisho page of it, so you can understand the words you don't know.
 - Choose to get a random sample, as well as a "daily random" sample, similar to how _Wordle_ gives a new one daily. The "day" is based on the timezone from which you are viewing the site. This way you can do this in group, share and compare.
-- Choose up to which lesson to get grammar points from, so you can get from only the lessons you have done.
+- Choose which lesson to get grammar points from, so you can get from only the lessons you have done.
+- Upload custom Vocab and grammar sets
+- Dark Mode!
 
 That's about it!
 
@@ -24,17 +26,15 @@ This is by no means perfect, so contributions are much welcome. Please check [co
 
 ## Really like to have these
 
-- Better styling and design : I'm not particularly good at these, so the website's a bit eyesore. I mean sure, its not a marquee with neon colors, but that's a too low bar. The dark theme is also implemented in a bit hacky way, and it especially shows in input fields. I'd love to make it look and feel better
+- Better styling and design : I'm not particularly good at these, so the website's a bit eyesore. I mean sure, its not a marquee with neon colors, but that's a too low bar.
 - More accessible : This could use more aria labels and other stuff that can help more people use this, would love to make it better.
-- Better Mobile design : Current mobility is based on bootstrap defaults, but they can be tweaked a bit more to make it look good on mobile devices.
 
 ## Wouldn't mind to add these
 
 I wouldn't mind adding these if enough people want them.
 - More vocab decks : Currently this only has N5 and N4, because I'm at lower N5-ish level. If people on higher levels are using this, and want N3/2/1 decks, I wouldn't mind adding them. This will take changes only from my side.
-- Grammar points from other books : I have added Genki 1 , as that's what I'm currently using, but if enough people want some other book's points, I wouldn't mind adding that. For this There will be some changes needed in code as well as I will need help in getting similar JSON about the grammar points in that book from the requestors.
+- Grammar points from other books : I have added Genki 1 , as that's what I'm currently using, but if enough people want some other book's points, I wouldn't mind adding that. For this There will be some changes needed in code as well as I will need help in getting similar JSON about the grammar points in that book from the requesters.
 - Improving the Grammar points : Currently the grammar points are cut-short, I'd like them to be a bit better worded, and maybe linked to some reference articles, similar to the way words are linked to their Jisho pages.
-- Support for custom Vocab lists to sample from : I wouldn't mind adding support for importing and storing custom vocab list JSON from local-storage ( so it will be device specific), so one can get words from their chosen set. This will need some code contributions.
 
 ## Most likely won't fix
 
