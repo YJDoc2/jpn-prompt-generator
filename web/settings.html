@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/icons.css">
     <title>JPN Prompt generator</title>
 </head>
 
@@ -22,13 +23,13 @@
             <div class="collapse navbar-collapse" id="navContents">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" target="_self">Home</a>
+                        <a class="nav-link" href="./index.html" target="_self">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./about.html" target="_self">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./settings.html" target="_self">Settings</a>
+                        <a class="nav-link active" href="#" target="_self">Settings</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/YJDoc2/jpn-prompt-generator"
@@ -45,12 +46,26 @@
     <br />
     <br />
     <div class="container">
-        <h1>Oops! No page here!</h1>
-        <h5>Try going to the main page : <a href="./index.html">https://yjdoc2.github.io/jpn-prompt-generator/</a></h5>
+        <h1>Settings</h1>
+        <hr />
+        <p> Here You can download the JSON files for your sets and delete custom sets.
+            <strong>NOTE</strong> that the built-in decks cannot be deleted from here.
+        </p>
+        <hr />
+        <br />
+        <br />
+        <div class="container">
+            <h3>Vocab Sets</h3>
+            <ul id="vocabSetUl" class="list-group mb-2">
+            </ul>
+            <h3>Grammar Sets</h3>
+            <ul id="grammarSetUl" class="list-group"></ul>
+        </div>
+        <footer class="footer my-2">
+            <div class="container">copyright 2022 YJDoc2</div>
+        </footer>
     </div>
-    <footer class="footer my-2">
-        <div class="container">copyright 2022 YJDoc2</div>
-    </footer>
+
     <script>
         let theme = localStorage.getItem('theme');
         if (!theme) {
@@ -62,9 +77,8 @@
         document.documentElement.setAttribute('data-bs-theme', theme);
         document.querySelector('#dark-mode-toggle').checked = theme === 'dark';
     </script>
+    <script src="./settings.js" type="module"></script>
     <script src="dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
 </body>
 
 </html>
