@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/icons.css">
+    <style>
+        p {
+            font-size: 1.2rem;
+        }
+    </style>
+    <title>JPN Prompt generator</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+        <div class="container-fluid mx-2">
+            <a class="navbar-brand" href="#">JPN Prompt Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContents"
+                aria-controls="navContents" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContents">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html" target="_self">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" target="_self">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./settings.html" target="_self">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/YJDoc2/jpn-prompt-generator"
+                            rel="noreferrer noopener" target="_blank">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-check form-switch form-check-reverse">
+                <input class="form-check-input" type="checkbox" id="dark-mode-toggle">
+                <label class="form-check-label" for="dark-mode-toggle">Dark Mode</label>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container">
+        <h1>About</h1>
+        <hr />
+        <div class="container">
+            <p>This is a short overview of this project. For more details, check the <a
+                    href="https://github.com/YJDoc2/jpn-prompt-generator" target="_blank"
+                    rel="noopener noreferrer">GitHub
+                    repo</a> of this project.</p>
+            <div>
+                <p>
+                    This is a small project intended to help japanese learners. The main aim of this is to get prompts
+                    to practice grammar and vocab for making sentences, so that one can practice more "output"-ing
+                    japanese apart from the exercise that one might be doing from text/work books.
+                </p>
+                <p>
+                    The original concept is to get some (5) words and some (3) grammar points, and try to write
+                    sentences that use them. That said, you are free to use these for something else, such as
+                    on-the-spot speaking exercise! You can select upto 10 of vocab and grammar points.
+                </p>
+                <p>
+                    You can click <strong>Get Random Selection</strong> to get randomly selected vocab and grammar
+                    points, or you can try <strong>Get Daily Selection</strong> to get random selections which change
+                    each day, similar to something like <em>Wordle</em>. That way you can do this in groups and check
+                    out each other's works. Note that by <em>daily</em> I mean each day in timezone from where you're
+                    viewing the site. I'm not inclined to work out to logic to change it uniformly across timezones ;)
+                </p>
+                <p><strong>NOTE</strong>, the built in vocab and grammar sets are based on what I'm currently
+                    studying, or have been added by request. If you want more / different sets, you can add custom sets
+                    (see how to on homepage).
+                    If you think that the set can help many more, and is based on somewhat a "standard" resource of
+                    learning, feel free to open an issue on the <a href="https://github.com/YJDoc2/jpn-prompt-generator"
+                        target="_blank" rel="noopener noreferrer">GitHub repo</a> :) Depending on the resource, I might
+                    add that set as one of the built in sets.
+                </p>
+            </div>
+        </div>
+        <footer class="footer my-2">
+            <div class="container">copyright 2022 YJDoc2</div>
+        </footer>
+    </div>
+    <script>
+        let theme = localStorage.getItem('theme');
+        if (!theme) {
+            let prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            theme = prefersDark ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        }
+
+        document.documentElement.setAttribute('data-bs-theme', theme);
+        document.querySelector('#dark-mode-toggle').checked = theme === 'dark';
+    </script>
+    <script src="dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
